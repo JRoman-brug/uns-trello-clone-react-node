@@ -1,0 +1,19 @@
+export type Project = {
+  id: number
+  name: string
+  lists: number[]
+}
+
+export type List = {
+  id: number
+  name: string
+  color: 'red' | 'blue' | 'green' | 'orange' | 'pink'
+  tasks: number[]
+}
+
+export type Task = {
+  id: number
+  name: string
+  description: string
+  isCompleted: boolean
+}
