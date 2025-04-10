@@ -24,7 +24,6 @@ function App() {
           <h1 className="text-lg font-bold">{activeProject.name}</h1>
           <div className="w-8"></div> {/* Spacer for centering */}
         </div>
-
         <div className="flex flex-1 overflow-hidden">
           <Sidebar 
             sidebarOpen={sidebarOpen}
