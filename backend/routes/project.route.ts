@@ -1,12 +1,10 @@
 import express from 'express'
 
-import { all, get, getLists, create, update, remove } from '../controllers/project.controller'
+import { all, create, update, remove } from '../controllers/project.controller'
 
 const router = express.Router()
 
 router.get('/', all)
-router.get('/:id', get)
-router.get('/:id/lists', getLists)
 router.post('/', create)
 router.put('/:id', update)
 router.delete('/:id', remove)

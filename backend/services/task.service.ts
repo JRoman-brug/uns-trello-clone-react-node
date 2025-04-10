@@ -1,13 +1,13 @@
 import { Task } from '../types/dataTypes'
 import tasks from '../data/tasks'
+import lists from '../data/lists'
 
-export const getAllTasks = async (): Promise<Task[]> => {
-  return await new Promise(resolve => setTimeout(() => resolve(tasks), 500))
-}
+export const getAllTasks = async (listId: number): Promise<Task[]> => {
+  const listIndex = lists.findIndex(list => list.id === listId)
+  if (listIndex === -1) throw new Error('List not found.')
 
-export const getTask = async (id: number): Promise<Task | undefined> => {
-  return await new Promise<Task | undefined>(resolve =>
-    setTimeout(() => resolve(tasks.find(task => task.id === id)), 500),
+  return await new Promise(resolve =>
+    setTimeout(() => resolve(tasks.filter(task => lists[listIndex].tasks.includes(task.id))), 500),
   )
 }
 

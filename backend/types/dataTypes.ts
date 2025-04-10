@@ -15,5 +15,6 @@ export type Task = {
   id: number
   name: string
   description: string
+  type: 'Design' | 'Development' | 'Testing' | 'Deployment'
   isCompleted: boolean
 }
