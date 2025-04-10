@@ -33,7 +33,7 @@ export const get = async (req: Request, res: Response) => {
   }
 }
 
-export const getTasks = async (req: Request, res: Response) => {
+export const getLists = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
     const result = await getListsByProjectId(parseInt(id))
