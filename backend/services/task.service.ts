@@ -15,6 +15,7 @@ export const createTask = async (task: Task): Promise<Task> => {
   if (task.id) throw new Error('Task ID should not be provided when creating a new task.')
 
   task.id = tasks.length + 1
+  task.isCompleted = false
   tasks.push(task)
 
   return await new Promise<Task>(resolve => setTimeout(() => resolve(task), 500))
