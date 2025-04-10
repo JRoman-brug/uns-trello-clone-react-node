@@ -1,15 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { List } from '../types/dataTypes'
-import {
-  getAllLists,
-  getList,
-  getTasksByListId,
-  createList,
-  updateList,
-  deleteList,
-} from '../services/list'
+import { getAllLists, createList, updateList, deleteList } from '../services/list'
 
-const useLists = () => {
+const useLists = (projectId: number) => {
   const queryClient = useQueryClient()
 
   const {
@@ -18,24 +10,8 @@ const useLists = () => {
     isError,
   } = useQuery({
     queryKey: ['lists'],
-    queryFn: getAllLists,
+    queryFn: () => getAllLists(projectId),
   })
-
-  const getListById = async (id: number) => {
-    const { data: list } = useQuery({
-      queryKey: ['lists', id],
-      queryFn: () => getList(id),
-    })
-    return list
-  }
-
-  const getTasks = async (id: number) => {
-    const { data: tasks } = useQuery({
-      queryKey: ['lists', id, 'tasks'],
-      queryFn: () => getTasksByListId(id),
-    })
-    return tasks
-  }
 
   const createListMutation = useMutation({
     mutationFn: createList,
@@ -45,7 +21,7 @@ const useLists = () => {
   })
 
   const updateListMutation = useMutation({
-    mutationFn: async (params: { id: number; list: List }) => updateList(params.id, params.list),
+    mutationFn: updateList,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['lists'] })
     },
@@ -62,8 +38,6 @@ const useLists = () => {
     lists,
     isLoading,
     isError,
-    getListById,
-    getTasks,
     createList: createListMutation.mutate,
     updateList: updateListMutation.mutate,
     deleteList: deleteListMutation.mutate,

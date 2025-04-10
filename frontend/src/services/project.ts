@@ -1,4 +1,4 @@
-import { Project, List } from '../types/dataTypes'
+import { Project } from '../types/dataTypes'
 import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -13,26 +13,6 @@ export const getAllProjects = async (): Promise<Project[]> => {
     })
 }
 
-export const getProject = async (id: number): Promise<Project | undefined> => {
-  return axios
-    .get<Project | undefined>(`${API_URL}/projects/${id}`)
-    .then(response => response.data)
-    .catch(error => {
-      console.error('Error fetching project:', error)
-      throw error
-    })
-}
-
-export const getListsByProjectId = async (id: number): Promise<List[]> => {
-  return axios
-    .get<List[]>(`${API_URL}/projects/${id}/lists`)
-    .then(response => response.data)
-    .catch(error => {
-      console.error("Error fetcing project's lists:", error)
-      throw error
-    })
-}
-
 export const createProject = async (project: Project): Promise<Project> => {
   return axios
     .post<Project>(`${API_URL}/projects`, project)
@@ -43,7 +23,13 @@ export const createProject = async (project: Project): Promise<Project> => {
     })
 }
 
-export const updateProject = async (id: number, project: Project): Promise<Project> => {
+export const updateProject = async ({
+  id,
+  project,
+}: {
+  id: number
+  project: Project
+}): Promise<Project> => {
   return axios
     .put<Project>(`${API_URL}/projects/${id}`, project)
     .then(response => response.data)

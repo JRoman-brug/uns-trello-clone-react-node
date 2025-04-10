@@ -1,11 +1,11 @@
-import { List, Task } from '../types/dataTypes'
+import { List } from '../types/dataTypes'
 import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL
 
-export const getAllLists = async (): Promise<List[]> => {
+export const getAllLists = async (projectId: number): Promise<List[]> => {
   return axios
-    .get<List[]>(`${API_URL}/lists`)
+    .get<List[]>(`${API_URL}/projects/${projectId}/lists`)
     .then(response => response.data)
     .catch(error => {
       console.error('Error fetching lists:', error)
@@ -13,29 +13,15 @@ export const getAllLists = async (): Promise<List[]> => {
     })
 }
 
-export const getList = async (id: number): Promise<List | undefined> => {
+export const createList = async ({
+  projectId,
+  list,
+}: {
+  projectId: number
+  list: List
+}): Promise<List> => {
   return axios
-    .get<List | undefined>(`${API_URL}/lists/${id}`)
-    .then(response => response.data)
-    .catch(error => {
-      console.error('Error fetching task:', error)
-      throw error
-    })
-}
-
-export const getTasksByListId = async (id: number): Promise<Task[]> => {
-  return axios
-    .get<Task[]>(`${API_URL}/lists/${id}/tasks`)
-    .then(response => response.data)
-    .catch(error => {
-      console.error("Error fetching list's tasks:", error)
-      throw error
-    })
-}
-
-export const createList = async (list: List): Promise<List> => {
-  return axios
-    .post<List>(`${API_URL}/lists`, list)
+    .post<List>(`${API_URL}/projects/${projectId}/lists`, list)
     .then(response => response.data)
     .catch(error => {
       console.error('Error creating list:', error)
@@ -43,9 +29,17 @@ export const createList = async (list: List): Promise<List> => {
     })
 }
 
-export const updateList = async (id: number, list: List): Promise<List> => {
+export const updateList = async ({
+  projectId,
+  id,
+  list,
+}: {
+  projectId: number
+  id: number
+  list: List
+}): Promise<List> => {
   return axios
-    .put<List>(`${API_URL}/lists`, list)
+    .put<List>(`${API_URL}/projects/${projectId}/lists/${id}`, list)
     .then(response => response.data)
     .catch(error => {
       console.error('Error updating list:', error)
@@ -53,9 +47,15 @@ export const updateList = async (id: number, list: List): Promise<List> => {
     })
 }
 
-export const deleteList = async (id: number): Promise<void> => {
+export const deleteList = async ({
+  projectId,
+  id,
+}: {
+  projectId: number
+  id: number
+}): Promise<void> => {
   return axios
-    .delete(`${API_URL}/lists/${id}`)
+    .delete(`${API_URL}/projects/${projectId}/lists/${id}`)
     .then(response => response.data)
     .catch(error => {
       console.error('Error deleting list:', error)

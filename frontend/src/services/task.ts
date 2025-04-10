@@ -3,9 +3,9 @@ import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL
 
-export const getAllTasks = async (): Promise<Task[]> => {
+export const getAllTasks = async (listId: number): Promise<Task[]> => {
   return axios
-    .get<Task[]>(`${API_URL}/tasks`)
+    .get<Task[]>(`${API_URL}/lists/${listId}/tasks`)
     .then(response => response.data)
     .catch(error => {
       console.error('Error fetching tasks:', error)
@@ -13,19 +13,15 @@ export const getAllTasks = async (): Promise<Task[]> => {
     })
 }
 
-export const getTask = async (id: number): Promise<Task> => {
+export const createTask = async ({
+  listId,
+  task,
+}: {
+  listId: number
+  task: Task
+}): Promise<Task> => {
   return axios
-    .get<Task>(`${API_URL}/tasks/${id}`)
-    .then(response => response.data)
-    .catch(error => {
-      console.error('Error fetching task:', error)
-      throw error
-    })
-}
-
-export const createTask = async (task: Task): Promise<Task> => {
-  return axios
-    .post<Task>(`${API_URL}/tasks`, task)
+    .post<Task>(`${API_URL}/lists/${listId}/tasks`, task)
     .then(response => response.data)
     .catch(error => {
       console.error('Error creating task:', error)
@@ -33,9 +29,17 @@ export const createTask = async (task: Task): Promise<Task> => {
     })
 }
 
-export const updateTask = async (id: number, task: Task): Promise<Task> => {
+export const updateTask = async ({
+  listId,
+  id,
+  task,
+}: {
+  listId: number
+  id: number
+  task: Task
+}): Promise<Task> => {
   return axios
-    .put<Task>(`${API_URL}/tasks/${id}`, task)
+    .put<Task>(`${API_URL}/lists/${listId}/tasks/${id}`, task)
     .then(response => response.data)
     .catch(error => {
       console.error('Error updating task:', error)
@@ -43,9 +47,17 @@ export const updateTask = async (id: number, task: Task): Promise<Task> => {
     })
 }
 
-export const updateTaskStatus = async (id: number, isCompleted: boolean): Promise<Task> => {
+export const updateTaskStatus = async ({
+  listId,
+  id,
+  isCompleted,
+}: {
+  listId: number
+  id: number
+  isCompleted: boolean
+}): Promise<Task> => {
   return axios
-    .patch(`${API_URL}/tasks/${id}`, { isCompleted })
+    .patch(`${API_URL}/lists/${listId}/tasks/${id}`, { isCompleted })
     .then(response => response.data)
     .catch(error => {
       console.error('Error updating task status:', error)
@@ -53,9 +65,9 @@ export const updateTaskStatus = async (id: number, isCompleted: boolean): Promis
     })
 }
 
-export const deleteTask = async (id: number): Promise<void> => {
+export const deleteTask = async ({ listId, id }: { listId: number; id: number }): Promise<void> => {
   return axios
-    .delete<void>(`${API_URL}/tasks/${id}`)
+    .delete<void>(`${API_URL}/lists/${listId}/tasks/${id}`)
     .then(response => response.data)
     .catch(error => {
       console.error('Error deleting task:', error)
