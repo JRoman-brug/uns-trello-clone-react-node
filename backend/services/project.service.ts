@@ -1,27 +1,8 @@
 import { List, Project } from '../types/dataTypes'
 import projects from '../data/projects'
-import lists from '../data/lists'
 
 export const getAllProjects = async (): Promise<Project[]> => {
   return await new Promise(resolve => setTimeout(() => resolve(projects), 500))
-}
-
-export const getProject = async (id: number): Promise<Project | undefined> => {
-  return await new Promise(resolve =>
-    setTimeout(() => resolve(projects.find(project => project.id === id)), 500),
-  )
-}
-
-export const getListsByProjectId = async (id: number): Promise<List[]> => {
-  const projectIndex = projects.findIndex(project => project.id === id)
-  if (projectIndex === -1) throw new Error('Project not found.')
-
-  return await new Promise(resolve =>
-    setTimeout(
-      () => resolve(lists.filter(list => projects[projectIndex].lists.includes(list.id))),
-      500,
-    ),
-  )
 }
 
 export const createProject = async (project: Project): Promise<Project> => {

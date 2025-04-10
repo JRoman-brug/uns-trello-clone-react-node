@@ -1,11 +1,12 @@
 import express from 'express'
 
-import { all, get, create, update, updateStatus, remove } from '../controllers/task.controller'
+import { all, create, update, updateStatus, remove } from '../controllers/task.controller'
 
-const router = express.Router()
+const router = express.Router({
+  mergeParams: true,
+})
 
 router.get('/', all)
-router.get('/:id', get)
 router.post('/', create)
 router.put('/:id', update)
 router.patch('/:id', updateStatus)

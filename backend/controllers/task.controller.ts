@@ -2,7 +2,6 @@ import { Request, Response } from 'express'
 
 import {
   getAllTasks,
-  getTask,
   createTask,
   updateTask,
   UpdateTaskStatus,
@@ -12,21 +11,8 @@ import { Task } from '../types/dataTypes'
 
 export const all = async (req: Request, res: Response) => {
   try {
-    const result = await getAllTasks()
-    return res.status(200).send(result)
-  } catch (error) {
-    console.log(error)
-    return res.status(500).send({ message: error })
-  }
-}
-
-export const get = async (req: Request, res: Response) => {
-  try {
     const { id } = req.params
-    const result = await getTask(parseInt(id))
-
-    if (!result) return res.status(404).send({ message: 'Task not found' })
-
+    const result = await getAllTasks(parseInt(id))
     return res.status(200).send(result)
   } catch (error) {
     console.log(error)

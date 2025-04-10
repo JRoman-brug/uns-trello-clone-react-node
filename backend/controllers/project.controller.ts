@@ -1,8 +1,6 @@
 import { Request, Response } from 'express'
 import {
   getAllProjects,
-  getProject,
-  getListsByProjectId,
   createProject,
   updateProject,
   deleteProject,
@@ -12,34 +10,6 @@ import { Project } from '../types/dataTypes'
 export const all = async (req: Request, res: Response) => {
   try {
     const result = await getAllProjects()
-    return res.status(200).send(result)
-  } catch (error) {
-    console.log(error)
-    return res.status(500).send({ message: error })
-  }
-}
-
-export const get = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params
-    const result = await getProject(parseInt(id))
-
-    if (!result) return res.status(404).send({ message: 'Project not found' })
-
-    return res.status(200).send(result)
-  } catch (error) {
-    console.log(error)
-    return res.status(500).send({ message: error })
-  }
-}
-
-export const getLists = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params
-    const result = await getListsByProjectId(parseInt(id))
-
-    if (!result) return res.status(404).send({ message: 'Project not found' })
-
     return res.status(200).send(result)
   } catch (error) {
     console.log(error)

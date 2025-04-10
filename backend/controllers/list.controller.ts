@@ -1,45 +1,11 @@
 import { Request, Response } from 'express'
-import {
-  getAllLists,
-  getList,
-  getTasksByListId,
-  createList,
-  updateList,
-  deleteList,
-} from '../services/list.service'
+import { getAllLists, createList, updateList, deleteList } from '../services/list.service'
 import { List } from '../types/dataTypes'
 
 export const all = async (req: Request, res: Response) => {
   try {
-    const result = await getAllLists()
-    return res.status(200).send(result)
-  } catch (error) {
-    console.log(error)
-    return res.status(500).send({ message: error })
-  }
-}
-
-export const get = async (req: Request, res: Response) => {
-  try {
     const { id } = req.params
-    const result = await getList(parseInt(id))
-
-    if (!result) return res.status(404).send({ message: 'List not found' })
-
-    return res.status(200).send(result)
-  } catch (error) {
-    console.log(error)
-    return res.status(500).send({ message: error })
-  }
-}
-
-export const getTasks = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params
-    const result = await getTasksByListId(parseInt(id))
-
-    if (!result) return res.status(404).send({ message: 'List not found' })
-
+    const result = await getAllLists(parseInt(id))
     return res.status(200).send(result)
   } catch (error) {
     console.log(error)
@@ -66,6 +32,7 @@ export const create = async (req: Request, res: Response) => {
 export const update = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
+    console.log(id)
     const list: List = req.body
 
     if (!list.name || !list.color)
