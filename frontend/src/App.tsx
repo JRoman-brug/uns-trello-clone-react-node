@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { projects } from '../dev/mockupData'
+import { lists, projects } from '../dev/mockupData'
 import Sidebar from './components/custom/sidebar';
 import { Menu, X } from 'lucide-react';
+import ListTask from './components/custom/ListTask';
 
 function App() {
   const [activeProject, setActiveProject] = useState(projects[0]);
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col h-screen bg-[#E6EBE0]">
+      <div className="flex flex-col h-screen bg-appSecondary">
         {/* Mobile Header */}
         <div className="md:hidden flex items-center justify-between p-4 bg-[#5D576B] text-white z-20">
           <button
@@ -32,6 +33,12 @@ function App() {
             activeProject={activeProject} 
             setActiveProject={(project) => setActiveProject(project)} 
             />
+
+            <main className='flex w-fit gap-5 p-4 overflow-x-auto'>
+              {lists.map((list)=>
+                <ListTask list={list}></ListTask>
+              )}  
+            </main>
         </div>
       </div>
     </>

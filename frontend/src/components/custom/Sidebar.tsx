@@ -36,13 +36,14 @@ function Sidebar({ sidebarOpen,setSidebarOpen ,projects, activeProject, setActiv
             </AnimatePresence>
 
             {/* Overlay to close sidebar on mobile */}
+            {/* TODO Fix close on desktop mode */}
             {sidebarOpen ? (
                 <AnimatePresence>
                     <motion.div
                         initial={{ opacity: "0%" }}
                         animate={{ opacity: "50%" }}
                         exit={{ opacity: "0%" }}
-                        className="md:hidden fixed inset-0 bg-black z-10"
+                        className="md:hidden fixed inset-0 bg-black z-10"       
                         onClick={() => setSidebarOpen(false)}
                     ></motion.div>
                 </AnimatePresence>
