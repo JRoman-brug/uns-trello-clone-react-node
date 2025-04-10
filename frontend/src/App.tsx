@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { lists, projects } from '../dev/mockupData'
-import Sidebar from './components/custom/sidebar';
-import { Menu, X } from 'lucide-react';
-import ListTask from './components/custom/ListTask';
+import Sidebar from './components/custom/sidebar'
+import { Menu, X } from 'lucide-react'
+import ListTask from './components/custom/ListTask'
 
 function App() {
-  const [activeProject, setActiveProject] = useState(projects[0]);
+  const [activeProject, setActiveProject] = useState(projects[0])
   //TODO Initialize it as false on mobile and true on desktop
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-
+  const [sidebarOpen, setSidebarOpen] = useState(true)
 
   return (
     <>
@@ -25,19 +24,19 @@ function App() {
           <div className="w-8"></div> {/* Spacer for centering */}
         </div>
         <div className="flex flex-1 overflow-hidden">
-          <Sidebar 
+          <Sidebar
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
             projects={projects}
-            activeProject={activeProject} 
-            setActiveProject={(project) => setActiveProject(project)} 
-            />
+            activeProject={activeProject}
+            setActiveProject={project => setActiveProject(project)}
+          />
 
-            <main className='flex w-fit gap-5 p-4 overflow-x-auto'>
-              {lists.map((list)=>
-                <ListTask list={list}></ListTask>
-              )}  
-            </main>
+          <main className="flex w-fit gap-5 p-4 overflow-x-auto">
+            {lists.map(list => (
+              <ListTask list={list}></ListTask>
+            ))}
+          </main>
         </div>
       </div>
     </>

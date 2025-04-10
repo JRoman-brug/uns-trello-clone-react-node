@@ -1,4 +1,4 @@
-import { Project, List, Task } from '../types/dataTypes'
+import { Project, List, Task } from '../src/types/dataTypes'
 
 export const tasks: Task[] = [
   {
