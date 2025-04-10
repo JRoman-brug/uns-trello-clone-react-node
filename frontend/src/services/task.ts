@@ -54,8 +54,11 @@ export const updateTaskStatus = async (id: number, isCompleted: boolean): Promis
 }
 
 export const deleteTask = async (id: number): Promise<void> => {
-  axios.delete(`${API_URL}/tasks/${id}`).catch(error => {
-    console.error('Error deleting task:', error)
-    throw error
-  })
+  return axios
+    .delete<void>(`${API_URL}/tasks/${id}`)
+    .then(response => response.data)
+    .catch(error => {
+      console.error('Error deleting task:', error)
+      throw error
+    })
 }
