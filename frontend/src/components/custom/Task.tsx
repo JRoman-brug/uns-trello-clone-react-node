@@ -16,7 +16,7 @@ function TaskCard({ task }: props) {
             <Badge className="bg-appPrimary">Diseño</Badge>
             <div className="flex justify-between items-center">
                 <h2>{task.name}</h2>
-                <button className="bg-appPrimary p-1 rounded-md text-appLight"><Trash2 /></button>
+                <button className=" p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight"><Trash2 /></button>
             </div>
         </motion.div>
     )
