@@ -9,7 +9,7 @@ interface props{
 }
 function ListTask({list}:props) {
     return (
-        <Card className="min-w-80 h-full font-app ">
+        <Card className="min-w-96 h-full font-app ">
             <CardHeader className="flex justify-start relative font-bold">
                 <h2>{list.name} </h2>
                 <Badge className="bg-appPrimary">{list.tasks.length}</Badge>
