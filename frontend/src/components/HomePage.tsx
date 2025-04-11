@@ -13,6 +13,7 @@ function HomePage() {
           <span className="text-appPrimary text-4xl font-secondary">TUS PROYECTOS</span>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px] mt-10">
+
           {projects?.map(project => <ProjectCard key={project.id} project={project} />)}
           <AddProjectCard />
         </div>

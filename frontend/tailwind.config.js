@@ -5,4 +5,12 @@ export default {
     extend: {},
   },
   plugins: [],
+  safeList: [
+    {
+      pattern: /from-.+/,
+    },
+    {
+      pattern: /to-.+/,
+    },
+  ],
 }
