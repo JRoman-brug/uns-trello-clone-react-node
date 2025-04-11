@@ -1,28 +1,23 @@
-import { useState } from 'react'
-import { lists, projects } from '../dev/mockupData'
-import Sidebar from './components/custom/sidebar'
-import { Menu, X } from 'lucide-react'
-import ListTask from './components/custom/ListTask'
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
 
 function App() {
-  const [activeProject, setActiveProject] = useState(projects[0])
-  //TODO Initialize it as false on mobile and true on desktop
-  const [sidebarOpen, setSidebarOpen] = useState(true)
-
   return (
-    <>
-      <div className="flex flex-col h-screen bg-appSecondary">
-        {/* Mobile Header */}
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path=":id" element={<p>projects...</p>} />
+      </Route>
+      {/* <div className="flex flex-col h-screen bg-appSecondary">
         <div className="md:hidden flex items-center justify-between p-4 bg-[#5D576B] text-white z-20">
-          <button
+        <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-1 rounded-md hover:bg-[#4d4a5a] transition-colors"
           >
             {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
           <h1 className="text-lg font-bold">{activeProject.name}</h1>
-          <div className="w-8"></div> {/* Spacer for centering */}
-        </div>
+          <div className="w-8"></div>
+          </div>
         <div className="flex flex-1 overflow-hidden">
           <Sidebar
             sidebarOpen={sidebarOpen}
@@ -30,16 +25,16 @@ function App() {
             projects={projects}
             activeProject={activeProject}
             setActiveProject={project => setActiveProject(project)}
-          />
-
-          <main className="flex w-fit gap-5 p-4 overflow-x-auto">
+            />
+            
+            <main className="flex w-fit gap-5 p-4 overflow-x-auto">
             {lists.map(list => (
               <ListTask list={list}></ListTask>
-            ))}
-          </main>
-        </div>
-      </div>
-    </>
+              ))}
+              </main>
+              </div>
+              </div> */}
+    </Routes>
   )
 }
 

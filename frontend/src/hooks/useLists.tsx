@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getAllLists, createList, updateList, deleteList } from '../services/list'
 
-const useLists = (projectId: number) => {
+const useLists = (projectId: number | undefined) => {
   const queryClient = useQueryClient()
 
   const {
@@ -9,28 +9,29 @@ const useLists = (projectId: number) => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['lists'],
+    queryKey: ['lists', projectId],
     queryFn: () => getAllLists(projectId),
+    enabled: !!projectId,
   })
 
   const createListMutation = useMutation({
     mutationFn: createList,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['lists'] })
+      queryClient.invalidateQueries({ queryKey: ['lists', projectId] })
     },
   })
 
   const updateListMutation = useMutation({
     mutationFn: updateList,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['lists'] })
+      queryClient.invalidateQueries({ queryKey: ['lists', projectId] })
     },
   })
 
   const deleteListMutation = useMutation({
     mutationFn: deleteList,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['lists'] })
+      queryClient.invalidateQueries({ queryKey: ['lists', projectId] })
     },
   })
 

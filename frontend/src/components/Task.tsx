@@ -1,12 +1,14 @@
-import { Task } from '@/types/dataTypes'
-import { Badge } from '../ui/badge'
+import { TaskType } from '../types/dataTypes'
+import { Badge } from './ui/badge'
 import { Pen, Trash2 } from 'lucide-react'
 import { motion } from 'motion/react'
+
 interface props {
-  task: Task
+  task: TaskType
+  onClick?: () => void
 }
 
-function TaskCard({ task }: props) {
+function Task({ task, ...props }: props) {
   return (
     <motion.div
       initial={{ scale: 0 }}
@@ -20,7 +22,10 @@ function TaskCard({ task }: props) {
           <button className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight">
             <Pen size={20} />
           </button>
-          <button className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight">
+          <button
+            className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight"
+            {...props}
+          >
             <Trash2 size={20} />
           </button>
         </div>
@@ -29,4 +34,4 @@ function TaskCard({ task }: props) {
   )
 }
 
-export default TaskCard
+export default Task

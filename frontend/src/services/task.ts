@@ -1,11 +1,11 @@
-import { Task } from '../types/dataTypes'
+import { TaskType } from '../types/dataTypes'
 import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL
 
-export const getAllTasks = async (listId: number): Promise<Task[]> => {
+export const getAllTasks = async (listId: number | undefined): Promise<TaskType[]> => {
   return axios
-    .get<Task[]>(`${API_URL}/lists/${listId}/tasks`)
+    .get<TaskType[]>(`${API_URL}/lists/${listId}/tasks`)
     .then(response => response.data)
     .catch(error => {
       console.error('Error fetching tasks:', error)
@@ -18,10 +18,10 @@ export const createTask = async ({
   task,
 }: {
   listId: number
-  task: Task
-}): Promise<Task> => {
+  task: TaskType
+}): Promise<TaskType> => {
   return axios
-    .post<Task>(`${API_URL}/lists/${listId}/tasks`, task)
+    .post<TaskType>(`${API_URL}/lists/${listId}/tasks`, task)
     .then(response => response.data)
     .catch(error => {
       console.error('Error creating task:', error)
@@ -36,10 +36,10 @@ export const updateTask = async ({
 }: {
   listId: number
   id: number
-  task: Task
-}): Promise<Task> => {
+  task: TaskType
+}): Promise<TaskType> => {
   return axios
-    .put<Task>(`${API_URL}/lists/${listId}/tasks/${id}`, task)
+    .put<TaskType>(`${API_URL}/lists/${listId}/tasks/${id}`, task)
     .then(response => response.data)
     .catch(error => {
       console.error('Error updating task:', error)
@@ -55,7 +55,7 @@ export const updateTaskStatus = async ({
   listId: number
   id: number
   isCompleted: boolean
-}): Promise<Task> => {
+}): Promise<TaskType> => {
   return axios
     .patch(`${API_URL}/lists/${listId}/tasks/${id}`, { isCompleted })
     .then(response => response.data)

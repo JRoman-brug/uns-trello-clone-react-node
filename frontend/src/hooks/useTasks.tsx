@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getAllTasks, createTask, updateTask, updateTaskStatus, deleteTask } from '../services/task'
 
-const useTask = (listId: number) => {
+const useTasks = (listId: number | undefined) => {
   const queryClient = useQueryClient()
 
   const {
@@ -9,34 +9,35 @@ const useTask = (listId: number) => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['tasks'],
+    queryKey: ['tasks', listId],
     queryFn: () => getAllTasks(listId),
+    enabled: !!listId,
   })
 
   const createTaskMutation = useMutation({
     mutationFn: createTask,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tasks'] })
+      queryClient.invalidateQueries({ queryKey: ['tasks', listId] })
     },
   })
   const updateTaskMutation = useMutation({
     mutationFn: updateTask,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tasks'] })
+      queryClient.invalidateQueries({ queryKey: ['tasks', listId] })
     },
   })
 
   const updateTaskStatusMutation = useMutation({
     mutationFn: updateTaskStatus,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tasks'] })
+      queryClient.invalidateQueries({ queryKey: ['tasks', listId] })
     },
   })
 
   const deleteTaskMutation = useMutation({
     mutationFn: deleteTask,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tasks'] })
+      queryClient.invalidateQueries({ queryKey: ['tasks', listId] })
     },
   })
 
@@ -51,4 +52,4 @@ const useTask = (listId: number) => {
   }
 }
 
-export default useTask
+export default useTasks

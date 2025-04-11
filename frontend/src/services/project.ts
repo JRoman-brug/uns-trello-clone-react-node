@@ -1,9 +1,9 @@
-import { Project } from '../types/dataTypes'
+import { ProjectType } from '../types/dataTypes'
 import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL
 
-export const getAllProjects = async (): Promise<Project[]> => {
+export const getAllProjects = async (): Promise<ProjectType[]> => {
   return axios
     .get(`${API_URL}/projects`)
     .then(response => response.data)
@@ -13,9 +13,9 @@ export const getAllProjects = async (): Promise<Project[]> => {
     })
 }
 
-export const createProject = async (project: Project): Promise<Project> => {
+export const createProject = async (project: ProjectType): Promise<ProjectType> => {
   return axios
-    .post<Project>(`${API_URL}/projects`, project)
+    .post<ProjectType>(`${API_URL}/projects`, project)
     .then(response => response.data)
     .catch(error => {
       console.error('Error creating project:', error)
@@ -28,10 +28,10 @@ export const updateProject = async ({
   project,
 }: {
   id: number
-  project: Project
-}): Promise<Project> => {
+  project: ProjectType
+}): Promise<ProjectType> => {
   return axios
-    .put<Project>(`${API_URL}/projects/${id}`, project)
+    .put<ProjectType>(`${API_URL}/projects/${id}`, project)
     .then(response => response.data)
     .catch(error => {
       console.error('Error updating project:', error)
