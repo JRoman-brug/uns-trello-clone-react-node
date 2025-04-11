@@ -1,6 +1,7 @@
 export type Project = {
   id: number
   name: string
+  gradient: [string, string]
   lists: number[]
 }
 

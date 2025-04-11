@@ -1,8 +1,8 @@
 import { Project } from '../types/dataTypes'
 
 const projects: Project[] = [
-  { id: 1, name: 'Product Launch', lists: [1, 2, 3] },
-  { id: 2, name: 'Marketing Campaign', lists: [4, 5, 6] },
+  { id: 1, name: 'Product Launch', gradient: ['#B90091', '#ED6A5A'], lists: [1, 2, 3] },
+  { id: 2, name: 'Marketing Campaign', gradient: ['#48C90C', '#27CC92'], lists: [4, 5, 6] },
 ]
 
 export default projects
