@@ -1,11 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
+import Board from './components/Board'
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path=":id" element={<p>projects...</p>} />
+        <Route path="/:id" element={<Board />} />
       </Route>
       {/* <div className="flex flex-col h-screen bg-appSecondary">
         <div className="md:hidden flex items-center justify-between p-4 bg-[#5D576B] text-white z-20">
