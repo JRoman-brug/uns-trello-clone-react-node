@@ -1,16 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-app: "Inter", sans-serif;
-  --color-appPrimary:#ED6A5A;
-  --color-appSecondary:#F4F1BB;
-  --color-appAccent:#9BC1BC;
-  --color-appDark:#5D576B;
-  --color-appLight:#E6EBE0;
+  --font-app: 'Inter', sans-serif;
+  --font-primary: 'Roboto', sans-serif;
+  --font-secondary: 'Roboto Mono', sans-serif;
+  --color-appPrimary: #9fadbc;
+  --color-appSecondary: #ed6a5a;
+  --color-background-dark: #1d2125;
+  --color-appAccent: #ed6a5a;
+  --color-appDark: #5d576b;
+  --color-appLight: #e6ebe0;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

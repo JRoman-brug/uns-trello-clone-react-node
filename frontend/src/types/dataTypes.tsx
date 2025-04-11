@@ -1,6 +1,7 @@
 export type ProjectType = {
   id: number
   name: string
+  gradient: [string, string]
   lists: number[]
 }
 
@@ -15,5 +16,6 @@ export type TaskType = {
   id: number
   name: string
   description: string
+  type: 'Design' | 'Development' | 'Testing' | 'Deployment'
   isCompleted: boolean
 }

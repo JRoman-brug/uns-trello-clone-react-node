@@ -1,12 +1,14 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
-import Board from './components/Board'
+import HomePage from './components/HomePage'
+import ProjectPage from './components/ProjectPage'
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="/:id" element={<Board />} />
+        <Route index element={<HomePage />} />
+        <Route path="/projects/:id" element={<ProjectPage />} />
       </Route>
       {/* <div className="flex flex-col h-screen bg-appSecondary">
         <div className="md:hidden flex items-center justify-between p-4 bg-[#5D576B] text-white z-20">

@@ -6,7 +6,7 @@ function Board() {
   const { id } = useParams()
   const { lists, isLoading, isError } = useLists(id ? parseInt(id) : undefined)
   return (
-    <main className="flex w-fit gap-5 p-4 overflow-x-auto">
+    <div className="flex w-fit gap-5 p-4 overflow-x-auto">
       {isLoading ? (
         <p>Loading lists...</p>
       ) : isError ? (
@@ -14,7 +14,7 @@ function Board() {
       ) : (
         lists?.map(list => <ListTask key={list.id} list={list} />)
       )}
-    </main>
+    </div>
   )
 }
 
