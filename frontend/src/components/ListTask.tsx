@@ -27,7 +27,7 @@ function ListTask({ list }: props) {
               <Badge className="bg-appPrimary">{list.tasks.length}</Badge>
             </div>
             <div className="flex gap-2">
-              <AddTask>
+              <AddTask listId={list.id}>
                 <button className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight">
                   <Plus />
                 </button>

@@ -13,7 +13,7 @@ export type ListType = {
 }
 
 export type TaskType = {
-  id: number
+  id: number | null
   name: string
   description: string
   type: 'Design' | 'Development' | 'Testing' | 'Deployment'
