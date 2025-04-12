@@ -7,6 +7,7 @@ import Task from './Task'
 import useTasks from '../hooks/useTasks'
 import useLists from '../hooks/useLists'
 import { useParams } from 'react-router-dom'
+import { AnimatePresence } from 'motion/react'
 
 interface props {
   list: ListType
@@ -41,19 +42,22 @@ function ListTask({ list }: props) {
             </div>
           </CardHeader>
           <CardContent className="flex flex-col gap-2 overflow-y-scroll">
-            {isLoading ? (
-              <p>Loading tasks...</p>
-            ) : isError ? (
-              <p className="text-red-600">Error loading tasks</p>
-            ) : (
-              tasks?.map(task => (
-                <Task
-                  key={task.id}
-                  task={task}
-                  onClick={() => deleteTask({ listId: list.id, id: task.id })}
-                />
-              ))
-            )}
+            <AnimatePresence>
+
+              {isLoading ? (
+                <p>Loading tasks...</p>
+              ) : isError ? (
+                <p className="text-red-600">Error loading tasks</p>
+              ) : (
+                tasks?.map(task => (
+                  <Task
+                    key={task.id}
+                    task={task}
+                    onClick={() => deleteTask({ listId: list.id, id: task.id })}
+                  />
+                ))
+              )}
+            </AnimatePresence>
           </CardContent>
         </Card>
       )}
