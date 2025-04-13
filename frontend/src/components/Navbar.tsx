@@ -7,7 +7,7 @@ function Navbar() {
   const { id } = useParams()
 
   return (
-    <nav className="w-full h-full bg-[#5D576B] flex flex-col shadow-lg z-10">
+    <nav className="w-full h-full bg-[#2b3136] flex flex-col shadow-lg z-10">
       <div className="flex-1 overflow-y-auto p-4">
         <div className="space-y-1">
           {isLoading ? (

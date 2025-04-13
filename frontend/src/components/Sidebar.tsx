@@ -4,17 +4,17 @@ import { useState } from 'react'
 import { ChevronRight } from 'lucide-react'
 
 function Sidebar() {
-  const [openSidebar, setOpenSidebar] = useState(true)
+  const [openSidebar, setOpenSidebar] = useState(false)
 
   return (
     <>
       <motion.div
         animate={{ left: (openSidebar) ? "0" : "-256px" }}
-        className={`absolute z-20 h-full w-64 left-0`}
+        className={`absolute z-20 h-full w-64 left-[-256px]`}
       >
         <Navbar />
         <button
-          className='absolute top-2 -right-[20px] bg-white rounded-full'
+          className='absolute top-2 -right-[30px] bg-[#2b3136] text-white rounded-r-full'
           onClick={() => setOpenSidebar(!openSidebar)}>
           <ChevronRight size={32} />
           </button>
