@@ -1,4 +1,4 @@
-import { ProjectType } from '../types/dataTypes'
+import { ProjectType } from '../../types/dataTypes'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { IoIosLock } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'

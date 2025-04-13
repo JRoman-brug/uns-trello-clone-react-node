@@ -1,6 +1,6 @@
 import { FaFlipboard } from 'react-icons/fa'
-import ProjectCard from './ProjectCard'
-import AddProjectCard from './AddProjectCard'
+import ProjectCard from '../components/ProjectCard'
+import AddProjectCard from '../dialog/AddProjectCard'
 import useProjects from '@/hooks/useProjects'
 
 function HomePage() {

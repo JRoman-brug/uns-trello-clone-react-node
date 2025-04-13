@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import useProjects from '../hooks/useProjects'
+import useProjects from '../../hooks/useProjects'
 
 function Navbar() {
   const { projects, isLoading, isError } = useProjects()

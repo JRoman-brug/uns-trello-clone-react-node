@@ -1,5 +1,5 @@
-import Board from './Board'
-import Sidebar from './Sidebar'
+import Board from '../components/Board'
+import Sidebar from '../components/Sidebar'
 
 function ProjectPage() {
   return (

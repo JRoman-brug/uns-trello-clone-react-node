@@ -1,5 +1,5 @@
-import { TaskType } from '../types/dataTypes'
-import { Badge } from './ui/badge'
+import { TaskType } from '../../types/dataTypes'
+import { Badge } from '../ui/badge'
 import { Pen, Trash2 } from 'lucide-react'
 import { motion } from 'motion/react'
 
