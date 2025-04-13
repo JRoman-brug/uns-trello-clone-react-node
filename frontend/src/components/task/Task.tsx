@@ -1,6 +1,9 @@
-import { TaskType } from '../../types/dataTypes'
-import { Badge } from '../ui/badge'
+//Types
+import { TaskType } from '@/types/dataTypes'
+import { Badge } from '@/components/ui/badge'
+//Icons
 import { Pen, Trash2 } from 'lucide-react'
+//Motion
 import { motion } from 'motion/react'
 
 interface props {

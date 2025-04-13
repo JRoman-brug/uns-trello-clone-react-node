@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
-import useLists from '../../hooks/useLists'
-import ListTask from './ListTask'
+import useLists from '../hooks/useLists'
+import ListTask from './listTask/ListTask'
 
 function Board() {
   const { id } = useParams()

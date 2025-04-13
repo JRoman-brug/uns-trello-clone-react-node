@@ -1,8 +1,13 @@
+//Types
 import { ProjectType } from '../../types/dataTypes'
+//Icons
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { IoIosLock } from 'react-icons/io'
+
 import { useNavigate } from 'react-router-dom'
+//Animation
 import { motion } from 'motion/react' 
+
 interface props {
   project: ProjectType
 }

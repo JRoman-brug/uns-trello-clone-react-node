@@ -1,13 +1,18 @@
-import { ListType } from '../../types/dataTypes'
-import { Card, CardContent, CardHeader } from '../ui/card'
-import { Plus, Trash2 } from 'lucide-react'
-import { Badge } from '../ui/badge'
-import AddTask from '../dialog/AddTask'
-import Task from './Task'
-import useTasks from '../../hooks/useTasks'
-import useLists from '../../hooks/useLists'
+import { ListType } from '@/types/dataTypes'
+
+//Componets
+import Task from '@/components/task/Task'
+import AddTask from '@/components/task/AddTaskDialog'
+//Hooks
+import useTasks from '@/hooks/useTasks'
+import useLists from '@/hooks/useLists'
+//Motion
 import { useParams } from 'react-router-dom'
 import { AnimatePresence } from 'motion/react'
+//Shadcn
+import { Plus, Trash2 } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 
 interface props {
   list: ListType
