@@ -1,4 +1,4 @@
-import { ProjectType } from '../types/dataTypes'
+import { ProjectType, ProjectRequestype } from '../types/dataTypes'
 import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -13,7 +13,7 @@ export const getAllProjects = async (): Promise<ProjectType[]> => {
     })
 }
 
-export const createProject = async (project: ProjectType): Promise<ProjectType> => {
+export const createProject = async (project: ProjectRequestype): Promise<ProjectType> => {
   return axios
     .post<ProjectType>(`${API_URL}/projects`, project)
     .then(response => response.data)

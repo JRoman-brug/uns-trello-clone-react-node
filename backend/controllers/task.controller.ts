@@ -2,17 +2,20 @@ import { Request, Response } from 'express'
 
 import {
   getAllTasks,
+  getAllTasksByList,
   createTask,
   updateTask,
   UpdateTaskStatus,
   deleteTask,
 } from '../services/task.service'
-import { Task } from '../types/dataTypes'
+import { TaskType, TaskRequestType } from '../types/dataTypes'
 
 export const all = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params
-    const result = await getAllTasks(parseInt(id))
+    const { listId } = req.query
+    const result = listId
+      ? await getAllTasksByList(parseInt(listId as string))
+      : await getAllTasks()
     return res.status(200).send(result)
   } catch (error) {
     console.log(error)
@@ -22,7 +25,7 @@ export const all = async (req: Request, res: Response) => {
 
 export const create = async (req: Request, res: Response) => {
   try {
-    const task: Task = req.body
+    const task: TaskRequestType = req.body
 
     if (!task.name || !task.description)
       return res.status(400).send({ message: 'Name and description are required' })
@@ -39,7 +42,7 @@ export const create = async (req: Request, res: Response) => {
 export const update = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
-    const task: Task = req.body
+    const task: TaskType = req.body
 
     if (!task.name || !task.description)
       return res.status(400).send({ message: 'Name and description are required' })

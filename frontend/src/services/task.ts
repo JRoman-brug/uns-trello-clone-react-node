@@ -1,11 +1,11 @@
-import { TaskType } from '../types/dataTypes'
+import { TaskType, TaskRequestType } from '../types/dataTypes'
 import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL
 
 export const getAllTasks = async (listId: number | undefined): Promise<TaskType[]> => {
   return axios
-    .get<TaskType[]>(`${API_URL}/lists/${listId}/tasks`)
+    .get<TaskType[]>(`${API_URL}/tasks?listId=${listId}`)
     .then(response => response.data)
     .catch(error => {
       console.error('Error fetching tasks:', error)
@@ -13,15 +13,9 @@ export const getAllTasks = async (listId: number | undefined): Promise<TaskType[
     })
 }
 
-export const createTask = async ({
-  listId,
-  task,
-}: {
-  listId: number
-  task: TaskType
-}): Promise<TaskType> => {
+export const createTask = async (task: TaskRequestType): Promise<TaskType> => {
   return axios
-    .post<TaskType>(`${API_URL}/lists/${listId}/tasks`, task)
+    .post<TaskType>(`${API_URL}/tasks`, task)
     .then(response => response.data)
     .catch(error => {
       console.error('Error creating task:', error)
@@ -30,16 +24,14 @@ export const createTask = async ({
 }
 
 export const updateTask = async ({
-  listId,
   id,
   task,
 }: {
-  listId: number
   id: number
   task: TaskType
 }): Promise<TaskType> => {
   return axios
-    .put<TaskType>(`${API_URL}/lists/${listId}/tasks/${id}`, task)
+    .put<TaskType>(`${API_URL}/tasks/${id}`, task)
     .then(response => response.data)
     .catch(error => {
       console.error('Error updating task:', error)
@@ -48,16 +40,14 @@ export const updateTask = async ({
 }
 
 export const updateTaskStatus = async ({
-  listId,
   id,
   isCompleted,
 }: {
-  listId: number
   id: number
   isCompleted: boolean
 }): Promise<TaskType> => {
   return axios
-    .patch(`${API_URL}/lists/${listId}/tasks/${id}`, { isCompleted })
+    .patch(`${API_URL}/tasks/${id}`, { isCompleted })
     .then(response => response.data)
     .catch(error => {
       console.error('Error updating task status:', error)
@@ -65,9 +55,9 @@ export const updateTaskStatus = async ({
     })
 }
 
-export const deleteTask = async ({ listId, id }: { listId: number; id: number }): Promise<void> => {
+export const deleteTask = async (id: number): Promise<void> => {
   return axios
-    .delete<void>(`${API_URL}/lists/${listId}/tasks/${id}`)
+    .delete<void>(`${API_URL}/tasks/${id}`)
     .then(response => response.data)
     .catch(error => {
       console.error('Error deleting task:', error)

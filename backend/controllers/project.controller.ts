@@ -5,7 +5,7 @@ import {
   updateProject,
   deleteProject,
 } from '../services/project.service'
-import { Project } from '../types/dataTypes'
+import { ProjectRequestype, ProjectType } from '../types/dataTypes'
 
 export const all = async (req: Request, res: Response) => {
   try {
@@ -19,7 +19,7 @@ export const all = async (req: Request, res: Response) => {
 
 export const create = async (req: Request, res: Response) => {
   try {
-    const project: Project = req.body
+    const project: ProjectRequestype = req.body
 
     if (!project.name) return res.status(400).send({ message: 'Name is required' })
 
@@ -35,7 +35,7 @@ export const create = async (req: Request, res: Response) => {
 export const update = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
-    const project: Project = req.body
+    const project: ProjectType = req.body
 
     if (!project.name) return res.status(400).send({ message: 'Name is required' })
 

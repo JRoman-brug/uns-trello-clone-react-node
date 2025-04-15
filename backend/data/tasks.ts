@@ -1,12 +1,13 @@
-import { Task } from '../types/dataTypes'
+import { TaskType } from '../types/dataTypes'
 
-const tasks: Task[] = [
+const tasks: TaskType[] = [
   {
     id: 1,
     name: 'Create project outline',
     description: 'Define the scope and objectives of the project',
     type: 'Design',
     isCompleted: true,
+    listId: 1,
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ const tasks: Task[] = [
     description: 'Analyze similar products in the market',
     type: 'Design',
     isCompleted: false,
+    listId: 1,
   },
   {
     id: 3,
@@ -21,6 +23,7 @@ const tasks: Task[] = [
     description: 'Create basic wireframes for key screens',
     type: 'Design',
     isCompleted: false,
+    listId: 1,
   },
   {
     id: 4,
@@ -28,6 +31,7 @@ const tasks: Task[] = [
     description: 'Create detailed user personas for target audience',
     type: 'Design',
     isCompleted: true,
+    listId: 1,
   },
   {
     id: 5,
@@ -35,6 +39,7 @@ const tasks: Task[] = [
     description: 'Initialize git repository and set up project structure',
     type: 'Development',
     isCompleted: true,
+    listId: 1,
   },
   {
     id: 6,
@@ -42,6 +47,7 @@ const tasks: Task[] = [
     description: 'Set up user authentication system',
     type: 'Development',
     isCompleted: false,
+    listId: 2,
   },
   {
     id: 7,
@@ -49,6 +55,7 @@ const tasks: Task[] = [
     description: 'Design and implement database structure',
     type: 'Development',
     isCompleted: true,
+    listId: 2,
   },
   {
     id: 8,
@@ -56,6 +63,7 @@ const tasks: Task[] = [
     description: 'Develop RESTful API endpoints for core functionality',
     type: 'Development',
     isCompleted: false,
+    listId: 2,
   },
   {
     id: 9,
@@ -63,6 +71,7 @@ const tasks: Task[] = [
     description: 'Create comprehensive unit tests for backend',
     type: 'Testing',
     isCompleted: false,
+    listId: 2,
   },
   {
     id: 10,
@@ -70,6 +79,7 @@ const tasks: Task[] = [
     description: 'Configure continuous integration and deployment',
     type: 'Deployment',
     isCompleted: true,
+    listId: 2,
   },
   {
     id: 11,
@@ -77,6 +87,7 @@ const tasks: Task[] = [
     description: 'Create reusable UI components',
     type: 'Design',
     isCompleted: true,
+    listId: 3,
   },
   {
     id: 12,
@@ -84,6 +95,7 @@ const tasks: Task[] = [
     description: 'Ensure the UI works on all device sizes',
     type: 'Development',
     isCompleted: false,
+    listId: 3,
   },
   {
     id: 13,
@@ -91,6 +103,7 @@ const tasks: Task[] = [
     description: 'Implement smooth transitions and animations',
     type: 'Development',
     isCompleted: false,
+    listId: 3,
   },
   {
     id: 14,
@@ -98,6 +111,7 @@ const tasks: Task[] = [
     description: 'Improve loading times and reduce bundle size',
     type: 'Development',
     isCompleted: false,
+    listId: 3,
   },
   {
     id: 15,
@@ -105,6 +119,7 @@ const tasks: Task[] = [
     description: 'Get feedback from real users',
     type: 'Testing',
     isCompleted: false,
+    listId: 3,
   },
   {
     id: 16,
@@ -112,6 +127,7 @@ const tasks: Task[] = [
     description: 'Develop comprehensive marketing plan',
     type: 'Design',
     isCompleted: true,
+    listId: 4,
   },
   {
     id: 17,
@@ -119,6 +135,7 @@ const tasks: Task[] = [
     description: 'Plan content for next 3 months',
     type: 'Design',
     isCompleted: true,
+    listId: 4,
   },
   {
     id: 18,
@@ -126,6 +143,7 @@ const tasks: Task[] = [
     description: 'Create graphics for social media posts',
     type: 'Design',
     isCompleted: false,
+    listId: 4,
   },
   {
     id: 19,
@@ -133,6 +151,7 @@ const tasks: Task[] = [
     description: 'Create initial set of blog content',
     type: 'Design',
     isCompleted: false,
+    listId: 4,
   },
   {
     id: 20,
@@ -140,6 +159,7 @@ const tasks: Task[] = [
     description: 'Configure tracking for marketing campaigns',
     type: 'Development',
     isCompleted: true,
+    listId: 4,
   },
   {
     id: 21,
@@ -147,6 +167,7 @@ const tasks: Task[] = [
     description: 'Identify high-value SEO keywords',
     type: 'Design',
     isCompleted: true,
+    listId: 5,
   },
   {
     id: 22,
@@ -154,6 +175,7 @@ const tasks: Task[] = [
     description: 'Update content with target keywords',
     type: 'Development',
     isCompleted: false,
+    listId: 5,
   },
   {
     id: 23,
@@ -161,6 +183,7 @@ const tasks: Task[] = [
     description: 'Develop plan for acquiring quality backlinks',
     type: 'Design',
     isCompleted: false,
+    listId: 5,
   },
   {
     id: 24,
@@ -168,6 +191,7 @@ const tasks: Task[] = [
     description: 'Identify and fix technical SEO issues',
     type: 'Development',
     isCompleted: false,
+    listId: 5,
   },
   {
     id: 25,
@@ -175,6 +199,7 @@ const tasks: Task[] = [
     description: 'Track keyword rankings over time',
     type: 'Development',
     isCompleted: false,
+    listId: 5,
   },
   {
     id: 26,
@@ -182,6 +207,7 @@ const tasks: Task[] = [
     description: 'Create branded email templates',
     type: 'Design',
     isCompleted: true,
+    listId: 6,
   },
   {
     id: 27,
@@ -189,6 +215,7 @@ const tasks: Task[] = [
     description: 'Implement strategies to grow email list',
     type: 'Development',
     isCompleted: false,
+    listId: 6,
   },
   {
     id: 28,
@@ -196,6 +223,7 @@ const tasks: Task[] = [
     description: 'Develop automated email sequences',
     type: 'Development',
     isCompleted: false,
+    listId: 6,
   },
   {
     id: 29,
@@ -203,6 +231,7 @@ const tasks: Task[] = [
     description: 'Test different email subject lines',
     type: 'Testing',
     isCompleted: false,
+    listId: 6,
   },
   {
     id: 30,
@@ -210,6 +239,7 @@ const tasks: Task[] = [
     description: 'Review open rates and click-through rates',
     type: 'Testing',
     isCompleted: false,
+    listId: 6,
   },
 ]
 

@@ -25,47 +25,40 @@ function ListTask({ list }: props) {
 
   return (
     <>
-      {id && (
-        <Card className="min-w-96 h-full font-app ">
-          <CardHeader className="flex justify-between relative font-bold">
-            <div className="flex">
-              <h2 className="mr-3">{list.name} </h2>
-              <Badge className="bg-appPrimary">{list.tasks.length}</Badge>
-            </div>
-            <div className="flex gap-2">
-              <AddTask listId={list.id}>
-                <button className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight">
-                  <Plus />
-                </button>
-              </AddTask>
-              <button
-                className="p-1 rounded-md  text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight"
-                onClick={() => deleteList({ projectId: parseInt(id), id: list.id })}
-              >
-                <Trash2 size={20} />
+      <Card className="min-w-96 h-full font-app ">
+        <CardHeader className="flex justify-between relative font-bold">
+          <div className="flex">
+            <h2 className="mr-3">{list.name} </h2>
+            <Badge className="bg-appPrimary">{list.tasks.length}</Badge>
+          </div>
+          <div className="flex gap-2">
+            <AddTask listId={list.id}>
+              <button className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight">
+                <Plus />
               </button>
-            </div>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-2 overflow-y-scroll">
-            <AnimatePresence>
-
-              {isLoading ? (
-                <p>Loading tasks...</p>
-              ) : isError ? (
-                <p className="text-red-600">Error loading tasks</p>
-              ) : (
-                tasks?.map(task => (
-                  <Task
-                    key={task.id}
-                    task={task}
-                    onClick={() => deleteTask({ listId: list.id, id: task.id })}
-                  />
-                ))
-              )}
-            </AnimatePresence>
-          </CardContent>
-        </Card>
-      )}
+            </AddTask>
+            <button
+              className="p-1 rounded-md  text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight"
+              onClick={() => deleteList(list.id)}
+            >
+              <Trash2 size={20} />
+            </button>
+          </div>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-2 overflow-y-scroll">
+          <AnimatePresence>
+            {isLoading ? (
+              <p>Loading tasks...</p>
+            ) : isError ? (
+              <p className="text-red-600">Error loading tasks</p>
+            ) : (
+              tasks?.map(task => (
+                <Task key={task.id} task={task} onClick={() => deleteTask(task.id)} />
+              ))
+            )}
+          </AnimatePresence>
+        </CardContent>
+      </Card>
     </>
   )
 }

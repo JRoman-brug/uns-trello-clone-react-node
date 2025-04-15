@@ -10,8 +10,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use('/lists/:id/tasks', taskRouter)
-app.use('/projects/:id/lists', listRouter)
+app.use('/tasks', taskRouter)
+app.use('/lists', listRouter)
 app.use('/projects', projectRouter)
 
 export default app

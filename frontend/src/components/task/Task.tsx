@@ -6,12 +6,15 @@ import { Pen, Trash2 } from 'lucide-react'
 //Motion
 import { motion } from 'motion/react'
 
+import useTasks from '@/hooks/useTasks'
+
 interface props {
   task: TaskType
   onClick?: () => void
 }
 
 function Task({ task, ...props }: props) {
+  const { deleteTask } = useTasks(task.listId)
   return (
     <motion.div
       initial={{ scale: 0 }}
@@ -28,6 +31,7 @@ function Task({ task, ...props }: props) {
           </button>
           <button
             className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight"
+            onClick={() => deleteTask(task.id)}
             {...props}
           >
             <Trash2 size={20} />

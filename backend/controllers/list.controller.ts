@@ -1,11 +1,19 @@
 import { Request, Response } from 'express'
-import { getAllLists, createList, updateList, deleteList } from '../services/list.service'
-import { List } from '../types/dataTypes'
+import {
+  getAllLists,
+  getAllListsByProject,
+  createList,
+  updateList,
+  deleteList,
+} from '../services/list.service'
+import { ListType, ListRequestType } from '../types/dataTypes'
 
 export const all = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params
-    const result = await getAllLists(parseInt(id))
+    const { projectId } = req.query
+    const result = projectId
+      ? await getAllListsByProject(parseInt(projectId as string))
+      : await getAllLists()
     return res.status(200).send(result)
   } catch (error) {
     console.log(error)
@@ -15,7 +23,7 @@ export const all = async (req: Request, res: Response) => {
 
 export const create = async (req: Request, res: Response) => {
   try {
-    const list: List = req.body
+    const list: ListRequestType = req.body
 
     if (!list.name || !list.color)
       return res.status(400).send({ message: 'Name and color are required' })
@@ -33,7 +41,7 @@ export const update = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
     console.log(id)
-    const list: List = req.body
+    const list: ListType = req.body
 
     if (!list.name || !list.color)
       return res.status(400).send({ message: 'Name and color are required' })

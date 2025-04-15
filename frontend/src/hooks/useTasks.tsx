@@ -17,7 +17,7 @@ const useTasks = (listId: number | undefined) => {
   const createTaskMutation = useMutation({
     mutationFn: createTask,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tasks', listId] })
+      queryClient.invalidateQueries({ queryKey: ['tasks'] })
     },
   })
   const updateTaskMutation = useMutation({

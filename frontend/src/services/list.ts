@@ -1,11 +1,11 @@
-import { ListType } from '../types/dataTypes'
+import { ListType, ListRequestType } from '../types/dataTypes'
 import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL
 
 export const getAllLists = async (projectId: number | undefined): Promise<ListType[]> => {
   return axios
-    .get<ListType[]>(`${API_URL}/projects/${projectId}/lists`)
+    .get<ListType[]>(`${API_URL}/lists?projectId=${projectId}`)
     .then(response => response.data)
     .catch(error => {
       console.error('Error fetching lists:', error)
@@ -13,15 +13,9 @@ export const getAllLists = async (projectId: number | undefined): Promise<ListTy
     })
 }
 
-export const createList = async ({
-  projectId,
-  list,
-}: {
-  projectId: number
-  list: ListType
-}): Promise<ListType> => {
+export const createList = async (list: ListRequestType): Promise<ListType> => {
   return axios
-    .post<ListType>(`${API_URL}/projects/${projectId}/lists`, list)
+    .post<ListType>(`${API_URL}/lists`, list)
     .then(response => response.data)
     .catch(error => {
       console.error('Error creating list:', error)
@@ -30,16 +24,14 @@ export const createList = async ({
 }
 
 export const updateList = async ({
-  projectId,
   id,
   list,
 }: {
-  projectId: number
   id: number
   list: ListType
 }): Promise<ListType> => {
   return axios
-    .put<ListType>(`${API_URL}/projects/${projectId}/lists/${id}`, list)
+    .put<ListType>(`${API_URL}/lists/${id}`, list)
     .then(response => response.data)
     .catch(error => {
       console.error('Error updating list:', error)
@@ -47,15 +39,9 @@ export const updateList = async ({
     })
 }
 
-export const deleteList = async ({
-  projectId,
-  id,
-}: {
-  projectId: number
-  id: number
-}): Promise<void> => {
+export const deleteList = async (id: number): Promise<void> => {
   return axios
-    .delete(`${API_URL}/projects/${projectId}/lists/${id}`)
+    .delete(`${API_URL}/lists/${id}`)
     .then(response => response.data)
     .catch(error => {
       console.error('Error deleting list:', error)
