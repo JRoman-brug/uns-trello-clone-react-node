@@ -13,6 +13,7 @@ import { AnimatePresence } from 'motion/react'
 import { Plus, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import SkeletonTask from '../task/SkeletonTask'
 
 interface props {
   list: ListType
@@ -45,9 +46,15 @@ function ListTask({ list }: props) {
             </button>
           </div>
         </CardHeader>
-        <CardContent className="h-full flex flex-col gap-2 overflow-y-scroll">
+        <CardContent className="h-full flex flex-col gap-2 pt-2 overflow-y-scroll">
+          <AnimatePresence>
             {isLoading ? (
-              <p>Loading tasks...</p>
+              <>
+                <SkeletonTask />
+                <SkeletonTask />
+                <SkeletonTask />
+                <SkeletonTask />
+              </>
             ) : isError ? (
               <p className="text-red-600">Error loading tasks</p>
             ) : (
@@ -55,7 +62,6 @@ function ListTask({ list }: props) {
                 <Task key={task.id} task={task} onClick={() => deleteTask(task.id)} />
               ))
             )}
-                  <AnimatePresence>
           </AnimatePresence>
         </CardContent>
       </Card>

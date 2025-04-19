@@ -19,7 +19,8 @@ function Task({ task, ...props }: props) {
     <motion.div
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
-      exit={{ scale: 0 }}
+      exit={{ scale: 0}}
+      transition={{delay:.5}}
       className="bg-appLight shrink-0 h-32 rounded-lg py-2 px-3"
     >
       <Badge className="bg-appPrimary">Diseño</Badge>

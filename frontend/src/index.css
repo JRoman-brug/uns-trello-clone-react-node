@@ -13,7 +13,7 @@
   --color-background-dark: #1d2125;
   --color-appAccent: #ed6a5a;
   --color-appDark: #5d576b;
-  --color-appLight: #e6ebe0;
+  --color-appLight: #2f353d;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
