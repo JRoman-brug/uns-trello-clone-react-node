@@ -45,8 +45,7 @@ function ListTask({ list }: props) {
             </button>
           </div>
         </CardHeader>
-        <CardContent className="flex flex-col gap-2 overflow-y-scroll">
-          <AnimatePresence>
+        <CardContent className="h-full flex flex-col gap-2 overflow-y-scroll">
             {isLoading ? (
               <p>Loading tasks...</p>
             ) : isError ? (
@@ -56,6 +55,7 @@ function ListTask({ list }: props) {
                 <Task key={task.id} task={task} onClick={() => deleteTask(task.id)} />
               ))
             )}
+                  <AnimatePresence>
           </AnimatePresence>
         </CardContent>
       </Card>

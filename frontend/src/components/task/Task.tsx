@@ -20,7 +20,7 @@ function Task({ task, ...props }: props) {
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       exit={{ scale: 0 }}
-      className="bg-appLight h-32 rounded-lg py-2 px-3"
+      className="bg-appLight shrink-0 h-32 rounded-lg py-2 px-3"
     >
       <Badge className="bg-appPrimary">Diseño</Badge>
       <div className="flex justify-between items-center">
