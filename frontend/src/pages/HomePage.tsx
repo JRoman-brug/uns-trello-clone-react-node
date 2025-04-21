@@ -2,7 +2,7 @@ import { FaFlipboard, FaPlus } from 'react-icons/fa'
 import ProjectCard from '@/components/project/ProjectCard'
 import useProjects from '@/hooks/useProjects'
 import { useState } from 'react'
-import AddProjectDialog from '@/components/project/AddProjectCardDialog'
+import AddProjectDialog from '@/components/project/AddProjectDialog'
 
 function HomePage() {
   const { projects } = useProjects()
