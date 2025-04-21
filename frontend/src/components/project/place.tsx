@@ -1,6 +1,4 @@
 //React hook form
-import useProjects from '@/hooks/useProjects'
-import { ProjectRequestype } from '@/types/dataTypes'
 import { SubmitHandler, useForm } from 'react-hook-form'
 interface AddTaskDialog {
   open: boolean
@@ -13,8 +11,6 @@ type ProjectForm = {
 }
 
 function AddProjectDialog({ open, onClose }: AddTaskDialog) {
-  const { createProject } = useProjects()
-
   //Colors input
   const colors = [
     { key: 'Blue', color: '#00d2ff,#3a47d5' },
@@ -34,12 +30,7 @@ function AddProjectDialog({ open, onClose }: AddTaskDialog) {
 
   const onSubmit: SubmitHandler<ProjectForm> = data => {
     console.log('onSubmit project: ' + data.name + ' gradient: ' + data.background)
-    console.log(data)
-    const newProject: ProjectRequestype = {
-      name: data.name,
-      gradient: [data.background.split(',')[0], data.background.split(',')[1]],
-    }
-    createProject(newProject)
+    console.log(data.background)
     onClose()
     reset()
   }
