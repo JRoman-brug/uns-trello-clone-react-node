@@ -15,6 +15,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import SkeletonTask from '../task/SkeletonTask'
 import { useState } from 'react'
+import ConfirmDialog from '../dialog/confirmDialog'
 
 interface props {
   list: ListType
@@ -25,7 +26,8 @@ function ListTask({ list }: props) {
   const { deleteList } = useLists(id ? parseInt(id) : undefined)
   const { tasks, isLoading, isError, deleteTask } = useTasks(list.id)
 
-  const [openModal, setOpenModal] = useState(false)
+  const [openAddTaskDialog, setOpenAddTaskDialog] = useState(false)
+  const [openConfirmDialog, setConfirmDialog] = useState(false)
   return (
     <>
       <Card className="min-w-96 h-full font-app ">
@@ -36,19 +38,30 @@ function ListTask({ list }: props) {
           </div>
           <div className="flex gap-2">
             <button
-              onClick={() => setOpenModal(true)}
+              onClick={() => setOpenAddTaskDialog(true)}
               className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight"
             >
               <Plus />
             </button>
+            <AddTaskDialog
+              listId={list.id}
+              open={openAddTaskDialog}
+              onClose={() => setOpenAddTaskDialog(false)}
+            />
+
             <button
               className="p-1 rounded-md  text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight"
-              onClick={() => deleteList(list.id)}
+              onClick={() => setConfirmDialog(true)}
             >
               <Trash2 size={20} />
             </button>
 
-            <AddTaskDialog listId={list.id} open={openModal} onClose={() => setOpenModal(false)} />
+            <ConfirmDialog
+              onAction={() => deleteList(list.id)}
+              title="Are you sure you want to delete this list?"
+              open={openConfirmDialog}
+              onClose={() => setConfirmDialog(false)}
+            />
           </div>
         </CardHeader>
         <CardContent className="h-full flex flex-col gap-2 pt-2 overflow-y-scroll">
