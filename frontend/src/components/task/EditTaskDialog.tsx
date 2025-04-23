@@ -2,10 +2,10 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 import useTasks from '@/hooks/useTasks'
-import { TaskRequestType } from '@/types/dataTypes'
+import { TaskType } from '@/types/dataTypes'
 
-interface AddTaskDialog {
-  listId: number
+interface EditTaskDialog {
+  task: TaskType
   open: boolean
   onClose: () => void
 }
@@ -14,31 +14,27 @@ type TaskForm = {
   type: 'Design' | 'Development' | 'Testing' | 'Deployment'
   description: string
 }
-function AddTaskDialog({ listId, open, onClose }: AddTaskDialog) {
-  const { createTask } = useTasks(listId)
+function EditTaskDialog({ task, open, onClose }: EditTaskDialog) {
+  const { updateTask } = useTasks(task.listId)
   const {
     register,
     formState: { errors },
-    reset,
     handleSubmit,
   } = useForm<TaskForm>()
 
   const onCancel = () => {
-    reset()
     onClose()
   }
 
   const onSubmit: SubmitHandler<TaskForm> = data => {
-    const task: TaskRequestType = {
+    const newTask: TaskType = {
+      ...task,
       name: data.name,
       description: data.description,
       type: data.type,
-      isCompleted: false,
-      listId: listId,
     }
-    createTask(task)
+    updateTask({ id: task.id, task: newTask })
     onClose()
-    reset()
   }
 
   const taskType = ['Design', 'Development', 'Testing', 'Deployment']
@@ -72,6 +68,7 @@ function AddTaskDialog({ listId, open, onClose }: AddTaskDialog) {
                 id="name"
                 placeholder="Name"
                 className="w-48 h-8 text-white bg-appLight rounded-xs p-2 outline-none placeholder:text-gray-700"
+                defaultValue={task.name}
               />
 
               {errors.name?.type === 'required' && (
@@ -96,11 +93,11 @@ function AddTaskDialog({ listId, open, onClose }: AddTaskDialog) {
               Type task
             </label>
             <select
-              defaultValue={'Desing'}
               {...register('type', {
                 required: true,
               })}
               className="w-48 h-8 text-white bg-appLight rounded-xs pl-2 outline-none placeholder:text-gray-700"
+              defaultValue={task.type}
             >
               {taskType.map((type, index) => (
                 <option key={index} className="text-white bg-appLight" value={type}>
@@ -122,6 +119,7 @@ function AddTaskDialog({ listId, open, onClose }: AddTaskDialog) {
               id="description"
               placeholder="Description"
               className="w-full h-32 resize-none text-white bg-appLight rounded-xs p-2 outline-none placeholder:text-gray-700"
+              defaultValue={task.description}
             />
             {errors.description?.type === 'required' && (
               <p role="alert" className="text-red-500">
@@ -141,4 +139,4 @@ function AddTaskDialog({ listId, open, onClose }: AddTaskDialog) {
   )
 }
 
-export default AddTaskDialog
+export default EditTaskDialog

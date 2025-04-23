@@ -6,8 +6,9 @@ import { Pen, Trash2 } from 'lucide-react'
 //Motion
 import { motion } from 'motion/react'
 
-import ConfirmDialog from '../dialog/confirmDialog'
+import ConfirmDialog from '@/components/dialog/ConfirmDialog'
 import { useState } from 'react'
+import EditTaskDialog from './EditTaskDialog'
 
 interface props {
   task: TaskType
@@ -16,6 +17,7 @@ interface props {
 
 function Task({ task, onClick }: props) {
   const [openModal, setOpenModel] = useState(false)
+  const [openEditTaskDialog, setOpenEditTaskDialog] = useState(false)
   return (
     <motion.div
       initial={{ scale: 0 }}
@@ -28,9 +30,19 @@ function Task({ task, onClick }: props) {
       <div className="flex justify-between items-center">
         <h3>{task.name}</h3>
         <div className="flex">
-          <button className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight">
+          <button
+            onClick={() => setOpenEditTaskDialog(true)}
+            className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight"
+          >
             <Pen size={20} />
           </button>
+
+          <EditTaskDialog
+            task={task}
+            open={openEditTaskDialog}
+            onClose={() => setOpenEditTaskDialog(false)}
+          />
+
           <button
             className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight"
             onClick={() => setOpenModel(true)}

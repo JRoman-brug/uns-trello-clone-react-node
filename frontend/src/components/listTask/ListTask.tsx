@@ -15,7 +15,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import SkeletonTask from '../task/SkeletonTask'
 import { useState } from 'react'
-import ConfirmDialog from '../dialog/confirmDialog'
+import ConfirmDialog from '@/components/dialog/ConfirmDialog'
 
 interface props {
   list: ListType

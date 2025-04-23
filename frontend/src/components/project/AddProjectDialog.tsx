@@ -98,8 +98,8 @@ function AddProjectDialog({ open, onClose }: AddTaskDialog) {
               onSelect={e => console.log(e)}
               className="w-48 h-8 mt-1 text-black bg-appLight rounded-xs pl-2 outline-none placeholder:text-gray-700"
             >
-              {colors.map(elem => (
-                <option key={elem.key} value={elem.color}>
+              {colors.map((elem, index) => (
+                <option key={index} value={elem.color}>
                   {elem.key}
                 </option>
               ))}

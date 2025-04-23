@@ -82,8 +82,10 @@ function AddListTaskDialog({ projectId, open, onClose }: AddListTaskDialog) {
               name="color"
               id=""
             >
-              {colors.map(elem => (
-                <option value={`${elem}`}>{elem}</option>
+              {colors.map((elem, index) => (
+                <option key={index} value={`${elem}`}>
+                  {elem}
+                </option>
               ))}
             </select>
           </div>
