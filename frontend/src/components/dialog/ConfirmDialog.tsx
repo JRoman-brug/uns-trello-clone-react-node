@@ -13,7 +13,7 @@ function ConfirmDialog({ title, description, open, onClose, onAction }: ConfirmD
   }
   return (
     <div
-      className={`fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors ${open ? 'visible bg-black/50' : 'invisible'}`}
+      className={`fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors ${open ? 'visible bg-[#0008]' : 'invisible'}`}
       onClick={onClose}
     >
       <div
