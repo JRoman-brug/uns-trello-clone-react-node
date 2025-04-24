@@ -22,7 +22,8 @@ function EditTaskDialog({ task, open, onClose }: EditTaskDialog) {
     handleSubmit,
   } = useForm<TaskForm>()
 
-  const onCancel = () => {
+  const onCancel = (e: React.MouseEvent) => {
+    e.stopPropagation()
     onClose()
   }
 

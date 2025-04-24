@@ -23,7 +23,8 @@ function AddTaskDialog({ listId, open, onClose }: AddTaskDialog) {
     handleSubmit,
   } = useForm<TaskForm>()
 
-  const onCancel = () => {
+  const onCancel = (e: React.MouseEvent) => {
+    e.stopPropagation()
     reset()
     onClose()
   }
