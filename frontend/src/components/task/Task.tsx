@@ -30,7 +30,7 @@ function Task({ task, onClick }: props) {
       onClick={() => setOpenTaskDialog(true)}
     >
       <Badge className="bg-appPrimary">Diseño</Badge>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center text-white">
         <h3>{task.name}</h3>
         <div className="flex">
           <button
