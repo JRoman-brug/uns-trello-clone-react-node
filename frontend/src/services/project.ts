@@ -27,7 +27,7 @@ export const updateProject = async ({
   id,
   project,
 }: {
-  id: number
+  id: string
   project: ProjectType
 }): Promise<ProjectType> => {
   return axios
@@ -39,7 +39,7 @@ export const updateProject = async ({
     })
 }
 
-export const deleteProject = async (id: number): Promise<void> => {
+export const deleteProject = async (id: string): Promise<void> => {
   return axios
     .delete<void>(`${API_URL}/projects/${id}`)
     .then(response => response.data)

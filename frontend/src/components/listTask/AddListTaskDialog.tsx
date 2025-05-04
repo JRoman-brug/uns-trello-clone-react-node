@@ -3,7 +3,7 @@ import { ListRequestType } from '@/types/dataTypes'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 interface AddListTaskDialog {
-  projectId: number
+  projectId: string
   open: boolean
   onClose: () => void
 }
@@ -14,7 +14,6 @@ type ListTaskForm = {
 }
 function AddListTaskDialog({ projectId, open, onClose }: AddListTaskDialog) {
   const { createList } = useLists(projectId)
-  //Form
   const {
     register,
     formState: { errors },
@@ -41,12 +40,10 @@ function AddListTaskDialog({ projectId, open, onClose }: AddListTaskDialog) {
 
   const colors = ['red', 'blue', 'green', 'orange', 'pink']
   return (
-    // overlay
     <div
       className={`fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors ${open ? 'visible bg-[#0008]' : 'invisible'}`}
       onClick={onCancel}
     >
-      {/* Content */}
       <div
         className={`w-[400px] h-fit mx-4 bg-background-dark z-150 rounded-sm shadow p-6 transition-all ${open ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
         onClick={e => e.stopPropagation()}

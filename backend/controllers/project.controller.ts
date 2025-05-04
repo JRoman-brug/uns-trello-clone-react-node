@@ -39,7 +39,7 @@ export const update = async (req: Request, res: Response) => {
 
     if (!project.name) return res.status(400).send({ message: 'Name is required' })
 
-    const result = await updateProject(parseInt(id), project)
+    const result = await updateProject(id, project)
 
     if (!result) return res.status(404).send({ message: 'Project not found' })
 
@@ -54,7 +54,7 @@ export const remove = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
 
-    await deleteProject(parseInt(id))
+    await deleteProject(id)
 
     return res.status(200).send({ message: 'Project deleted' })
   } catch (error) {

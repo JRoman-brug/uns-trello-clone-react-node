@@ -7,11 +7,11 @@ import AddListTaskDialog from './listTask/AddListTaskDialog'
 
 function Board() {
   const { id } = useParams()
-  const { lists, isLoading, isError } = useLists(id ? parseInt(id) : undefined)
+  const { lists, isLoading, isError } = useLists(id)
 
   const [openModal, setOpenModal] = useState(false)
   return (
-    <div className="flex w-fit gap-5 p-4 overflow-x-auto">
+    <div className="flex w-full min-h-[calc(100vh-4rem)] gap-5 p-4 overflow-x-auto">
       {isLoading ? (
         <p>Loading lists...</p>
       ) : isError ? (

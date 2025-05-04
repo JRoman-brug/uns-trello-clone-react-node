@@ -13,9 +13,7 @@ import { TaskType, TaskRequestType } from '../types/dataTypes'
 export const all = async (req: Request, res: Response) => {
   try {
     const { listId } = req.query
-    const result = listId
-      ? await getAllTasksByList(parseInt(listId as string))
-      : await getAllTasks()
+    const result = listId ? await getAllTasksByList(listId as string) : await getAllTasks()
     return res.status(200).send(result)
   } catch (error) {
     console.log(error)
@@ -47,7 +45,7 @@ export const update = async (req: Request, res: Response) => {
     if (!task.name || !task.description)
       return res.status(400).send({ message: 'Name and description are required' })
 
-    const result = await updateTask(parseInt(id), task)
+    const result = await updateTask(id, task)
 
     if (!result) return res.status(404).send({ message: 'Task not found' })
 
@@ -66,7 +64,7 @@ export const updateStatus = async (req: Request, res: Response) => {
     if (isCompleted === undefined)
       return res.status(400).send({ message: 'isCompleted is required' })
 
-    const result = await UpdateTaskStatus(parseInt(id), isCompleted)
+    const result = await UpdateTaskStatus(id, isCompleted)
 
     if (!result) return res.status(404).send({ message: 'Task not found' })
 
@@ -81,7 +79,7 @@ export const remove = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
 
-    await deleteTask(parseInt(id))
+    await deleteTask(id)
 
     return res.status(200).send({ message: 'Task deleted' })
   } catch (error) {

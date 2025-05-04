@@ -1,11 +1,7 @@
-//Types
 import { TaskType } from '@/types/dataTypes'
 import { Badge } from '@/components/ui/badge'
-//Icons
 import { Pen, Trash2 } from 'lucide-react'
-//Motion
 import { motion } from 'motion/react'
-
 import ConfirmDialog from '@/components/dialog/ConfirmDialog'
 import { useState } from 'react'
 import EditTaskDialog from './EditTaskDialog'
@@ -26,21 +22,21 @@ function Task({ task, onClick }: props) {
       animate={{ scale: 1 }}
       exit={{ scale: 0 }}
       transition={{ delay: 0.5 }}
-      className="bg-appLight shrink-0 h-32 rounded-lg py-2 px-3"
+      className="bg-appDarkAccent shrink-0 rounded-lg p-2"
       onClick={() => setOpenTaskDialog(true)}
     >
       <Badge className="bg-appPrimary">Diseño</Badge>
-      <div className="flex justify-between items-center text-white">
+      <div className="flex justify-between gap-2 items-center text-appLightDark text-md font-normal">
         <h3>{task.name}</h3>
-        <div className="flex">
+        <div className="flex gap-1">
           <button
             onClick={e => {
               e.stopPropagation()
               setOpenEditTaskDialog(true)
             }}
-            className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight"
+            className="p-1 rounded-md text-gray-500 hover:bg-appLightDark/25 hover:text-appLight transition-all duration-200 cursor-pointer"
           >
-            <Pen size={20} />
+            <Pen size={18} />
           </button>
 
           <EditTaskDialog
@@ -50,13 +46,13 @@ function Task({ task, onClick }: props) {
           />
 
           <button
-            className="p-1 rounded-md text-gray-500 transition-colors hover:bg-appPrimary hover:text-appLight"
+            className="p-1 rounded-md text-gray-500 hover:bg-appLightDark/25 hover:text-appSecondary transition-all duration-200 cursor-pointer"
             onClick={e => {
               e.stopPropagation()
               setOpenConfirmDialog(true)
             }}
           >
-            <Trash2 size={20} />
+            <Trash2 size={18} />
           </button>
           <ConfirmDialog
             title="Are you sure you want to delete this task?"

@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL
 
-export const getAllTasks = async (listId: number | undefined): Promise<TaskType[]> => {
+export const getAllTasks = async (listId: string | undefined): Promise<TaskType[]> => {
   return axios
     .get<TaskType[]>(`${API_URL}/tasks?listId=${listId}`)
     .then(response => response.data)
@@ -27,7 +27,7 @@ export const updateTask = async ({
   id,
   task,
 }: {
-  id: number
+  id: string
   task: TaskType
 }): Promise<TaskType> => {
   return axios
@@ -43,7 +43,7 @@ export const updateTaskStatus = async ({
   id,
   isCompleted,
 }: {
-  id: number
+  id: string
   isCompleted: boolean
 }): Promise<TaskType> => {
   return axios
@@ -55,7 +55,7 @@ export const updateTaskStatus = async ({
     })
 }
 
-export const deleteTask = async (id: number): Promise<void> => {
+export const deleteTask = async (id: string): Promise<void> => {
   return axios
     .delete<void>(`${API_URL}/tasks/${id}`)
     .then(response => response.data)

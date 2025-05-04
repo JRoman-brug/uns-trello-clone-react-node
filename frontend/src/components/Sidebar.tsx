@@ -9,15 +9,16 @@ function Sidebar() {
   return (
     <>
       <motion.div
-        animate={{ left: (openSidebar) ? "0" : "-256px" }}
+        animate={{ left: openSidebar ? '0' : '-256px' }}
         className={`absolute z-20 h-full w-64 left-[-256px]`}
       >
         <Navbar />
         <button
-          className='absolute top-2 -right-[30px] bg-[#2b3136] text-white rounded-r-full'
-          onClick={() => setOpenSidebar(!openSidebar)}>
+          className="absolute top-4 -right-[30px] bg-[#2b3136] cursor-pointer text-white rounded-r-full"
+          onClick={() => setOpenSidebar(!openSidebar)}
+        >
           <ChevronRight size={32} />
-          </button>
+        </button>
       </motion.div>
     </>
   )

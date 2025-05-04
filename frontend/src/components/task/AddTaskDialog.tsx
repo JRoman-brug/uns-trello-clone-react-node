@@ -1,12 +1,9 @@
-//React-hook-form
 import { useForm, SubmitHandler } from 'react-hook-form'
-
 import useTasks from '@/hooks/useTasks'
 import { TaskRequestType } from '@/types/dataTypes'
 
 interface AddTaskDialog {
-  listId: number
-  open: boolean
+  listId: string
   onClose: () => void
 }
 type TaskForm = {
@@ -14,7 +11,7 @@ type TaskForm = {
   type: 'Design' | 'Development' | 'Testing' | 'Deployment'
   description: string
 }
-function AddTaskDialog({ listId, open, onClose }: AddTaskDialog) {
+function AddTaskDialog({ listId, onClose }: AddTaskDialog) {
   const { createTask } = useTasks(listId)
   const {
     register,
@@ -44,14 +41,12 @@ function AddTaskDialog({ listId, open, onClose }: AddTaskDialog) {
 
   const taskType = ['Design', 'Development', 'Testing', 'Deployment']
   return (
-    // Overlay
     <div
-      className={`fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors ${open ? 'visible bg-[#0008]' : 'invisible'}`}
+      className="fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors  bg-[#0008]"
       onClick={onCancel}
     >
-      {/* Content */}
       <div
-        className={`w-xl h-fit mx-4 flex flex-col gap-4 bg-background-dark z-150 rounded-sm shadow p-6 transition-all ${open ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
+        className="w-xl h-fit mx-4 flex flex-col gap-4 bg-background-dark z-150 rounded-sm shadow p-6 transition-all scale-100 opacity-100"
         onClick={e => e.stopPropagation()}
       >
         <form

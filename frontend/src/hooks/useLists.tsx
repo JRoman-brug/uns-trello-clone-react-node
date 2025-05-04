@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getAllLists, createList, updateList, deleteList } from '../services/list'
 
-const useLists = (projectId: number | undefined) => {
+const useLists = (projectId: string | undefined) => {
   const queryClient = useQueryClient()
 
   const {

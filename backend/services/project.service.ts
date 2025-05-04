@@ -1,24 +1,25 @@
 import { ProjectType, ProjectRequestype } from '../types/dataTypes'
+import { v4 as uuidv4 } from 'uuid'
 import projects from '../data/projects'
 import { deleteList } from './list.service'
 
 export const getAllProjects = async (): Promise<ProjectType[]> => {
-  return await new Promise(resolve => setTimeout(() => resolve(projects), 500))
+  return await new Promise(resolve => resolve(projects))
 }
 
 export const createProject = async (project: ProjectRequestype): Promise<ProjectType> => {
   const newProject: ProjectType = {
     ...project,
-    id: projects.length + 1,
+    id: uuidv4(),
     lists: [],
   }
   projects.push(newProject)
 
-  return await new Promise(resolve => setTimeout(() => resolve(newProject), 500))
+  return await new Promise(resolve => resolve(newProject))
 }
 
 export const updateProject = async (
-  id: number,
+  id: string,
   updatedProject: ProjectType,
 ): Promise<ProjectType> => {
   if (updatedProject.id !== id) throw new Error('Project ID does not match the provided project.')
@@ -28,16 +29,15 @@ export const updateProject = async (
 
   projects[projectIndex] = updatedProject
 
-  return await new Promise(resolve => setTimeout(() => resolve(updatedProject), 500))
+  return await new Promise(resolve => resolve(updatedProject))
 }
 
-export const deleteProject = async (id: number): Promise<void> => {
+export const deleteProject = async (id: string): Promise<void> => {
   const projectIndex = projects.findIndex(project => project.id === id)
   if (projectIndex === -1) throw new Error('Project not found.')
 
   projects[projectIndex].lists.forEach(listId => deleteList(listId))
-
   projects.splice(projectIndex, 1)
 
-  return await new Promise(resolve => setTimeout(() => resolve(), 500))
+  return await new Promise(resolve => resolve())
 }

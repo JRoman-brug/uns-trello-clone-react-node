@@ -1,8 +1,8 @@
 export type ProjectType = {
-  id: number
+  id: string
   name: string
   gradient: [string, string]
-  lists: number[]
+  lists: string[]
 }
 
 export type ProjectRequestype = {
@@ -11,26 +11,26 @@ export type ProjectRequestype = {
 }
 
 export type ListType = {
-  id: number
+  id: string
   name: string
   color: 'red' | 'blue' | 'green' | 'orange' | 'pink'
-  tasks: number[]
-  projectId: number
+  tasks: string[]
+  projectId: string
 }
 
 export type ListRequestType = {
   name: string
   color: 'red' | 'blue' | 'green' | 'orange' | 'pink'
-  projectId: number
+  projectId: string
 }
 
 export type TaskType = {
-  id: number
+  id: string
   name: string
   description: string
   type: 'Design' | 'Development' | 'Testing' | 'Deployment'
   isCompleted: boolean
-  listId: number
+  listId: string
 }
 
 export type TaskRequestType = {
@@ -38,5 +38,5 @@ export type TaskRequestType = {
   description: string
   type: 'Design' | 'Development' | 'Testing' | 'Deployment'
   isCompleted: boolean
-  listId: number
+  listId: string
 }

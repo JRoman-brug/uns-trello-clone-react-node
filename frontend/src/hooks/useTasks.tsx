@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getAllTasks, createTask, updateTask, updateTaskStatus, deleteTask } from '../services/task'
 
-const useTasks = (listId: number | undefined) => {
+const useTasks = (listId: string | undefined) => {
   const queryClient = useQueryClient()
 
   const {

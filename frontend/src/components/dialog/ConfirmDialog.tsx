@@ -13,7 +13,7 @@ function ConfirmDialog({ title, description, open, onClose, onAction }: ConfirmD
   }
   return (
     <div
-      className={`fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors ${open ? 'visible bg-[#0008]' : 'invisible'}`}
+      className={`fixed z-1000 inset-0 m-0 w-screen h-screen flex justify-center items-center transition-colors ${open ? 'visible bg-[#0008]' : 'invisible'}`}
       onClick={(e: React.MouseEvent) => {
         e.stopPropagation()
         onClose()

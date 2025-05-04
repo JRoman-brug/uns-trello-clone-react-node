@@ -11,9 +11,12 @@
   --color-appPrimary: #9fadbc;
   --color-appSecondary: #ed6a5a;
   --color-background-dark: #1d2125;
+  --color-background-dark-accent: #282e33;
   --color-appAccent: #ed6a5a;
-  --color-appDark: #5d576b;
-  --color-appLight: #2f353d;
+  --color-appDark: #101204;
+  --color-appDarkAccent: #22272b;
+  --color-appLightDark: #b6c2cf;
+  --color-appLight: #dcdfe4;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -84,6 +87,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --shadow-overlay: 0px 0px 0px 1px #39424a, 0px 8px 12px #0304045c, 0px 0px 1px 1px #03040480;
 }
 
 .dark {
