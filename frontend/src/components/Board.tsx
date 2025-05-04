@@ -26,7 +26,7 @@ function Board() {
         <FaPlus size={30} className="text-white" />
       </div>
       <AddListTaskDialog
-        projectId={Number(id)}
+        projectId={id || ''}
         open={openModal}
         onClose={() => setOpenModal(false)}
       />
