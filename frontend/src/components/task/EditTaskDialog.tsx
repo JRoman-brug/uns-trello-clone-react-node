@@ -1,6 +1,6 @@
 //React-hook-form
 import { useForm, SubmitHandler } from 'react-hook-form'
-
+import { toast } from 'react-toastify'
 import useTasks from '@/hooks/useTasks'
 import { TaskType } from '@/types/dataTypes'
 
@@ -35,6 +35,10 @@ function EditTaskDialog({ task, open, onClose }: EditTaskDialog) {
       type: data.type,
     }
     updateTask({ id: task.id, task: newTask })
+    toast.success('Task updated successfully', {
+      position: 'bottom-right',
+      autoClose: 2000,
+    })
     onClose()
   }
 

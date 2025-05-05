@@ -1,6 +1,7 @@
 import useLists from '@/hooks/useLists'
 import { ListRequestType } from '@/types/dataTypes'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 interface AddListTaskDialog {
   projectId: string
@@ -33,6 +34,10 @@ function AddListTaskDialog({ projectId, open, onClose }: AddListTaskDialog) {
       projectId: projectId,
       color: 'blue',
     }
+    toast.success('List created successfully', {
+      position: 'bottom-right',
+      autoClose: 2000,
+    })
     createList(newList)
     reset()
     onClose()

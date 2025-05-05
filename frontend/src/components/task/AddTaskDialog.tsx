@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
 import useTasks from '@/hooks/useTasks'
 import { TaskRequestType } from '@/types/dataTypes'
+import { toast } from 'react-toastify'
 
 interface AddTaskDialog {
   listId: string
@@ -35,6 +36,10 @@ function AddTaskDialog({ listId, onClose }: AddTaskDialog) {
       listId: listId,
     }
     createTask(task)
+    toast.success('Task created successfully', {
+      position: 'bottom-right',
+      autoClose: 2000,
+    })
     onClose()
     reset()
   }

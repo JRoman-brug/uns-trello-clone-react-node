@@ -6,6 +6,7 @@ import ConfirmDialog from '@/components/dialog/ConfirmDialog'
 import { useState } from 'react'
 import EditTaskDialog from './EditTaskDialog'
 import TaskDialog from './TaskDialog'
+import { toast } from 'react-toastify'
 
 interface props {
   task: TaskType
@@ -16,6 +17,14 @@ function Task({ task, onClick }: props) {
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false)
   const [openEditTaskDialog, setOpenEditTaskDialog] = useState(false)
   const [openTaskDialog, setOpenTaskDialog] = useState(false)
+
+  const onDeleteTask = () => {
+    toast.success('Task deleted successfully', {
+      position: 'bottom-right',
+      autoClose: 2000,
+    })
+    onClick()
+  }
   return (
     <motion.div
       initial={{ scale: 0 }}
@@ -58,7 +67,7 @@ function Task({ task, onClick }: props) {
             title="Are you sure you want to delete this task?"
             open={openConfirmDialog}
             onClose={() => setOpenConfirmDialog(false)}
-            onAction={onClick}
+            onAction={onDeleteTask}
           />
         </div>
       </div>

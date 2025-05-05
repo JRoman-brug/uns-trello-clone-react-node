@@ -13,6 +13,7 @@ import SkeletonTask from '../task/SkeletonTask'
 import { useEffect, useState } from 'react'
 import ConfirmDialog from '@/components/dialog/ConfirmDialog'
 import OptionsMenu from '@/components/ui/OptionsMenu'
+import { toast } from 'react-toastify'
 
 interface props {
   list: ListType
@@ -33,6 +34,14 @@ function ListTask({ list }: props) {
   const [openUpdateDialog, setOpenUpdateDialog] = useState(false)
   const [openAddTaskDialog, setOpenAddTaskDialog] = useState(false)
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false)
+
+  const onDeleteTask = () => {
+    toast.success('List deleted successfully', {
+      position: 'bottom-right',
+      autoClose: 2000,
+    })
+    deleteList(list.id)
+  }
 
   return (
     <>
@@ -59,7 +68,7 @@ function ListTask({ list }: props) {
           )}
           {openUpdateDialog /* TODO EditListDialog */}
           <ConfirmDialog
-            onAction={() => deleteList(list.id)}
+            onAction={onDeleteTask}
             title="Are you sure you want to delete this list?"
             open={openConfirmDialog}
             onClose={() => setOpenConfirmDialog(false)}

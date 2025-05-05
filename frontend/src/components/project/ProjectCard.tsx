@@ -8,6 +8,7 @@ import { motion } from 'motion/react'
 import EditProjectDialog from './EditProjectDialog'
 import ConfirmDialog from '../dialog/ConfirmDialog'
 import useProjects from '@/hooks/useProjects'
+import { toast } from 'react-toastify'
 interface props {
   project: ProjectType
 }
@@ -18,6 +19,14 @@ function ProyectCard({ project }: props) {
   const [deleteDialog, setDeleteDialog] = useState(false)
   const navigate = useNavigate()
   const { deleteProject } = useProjects()
+
+  const onDeleteProject = () => {
+    toast.success('Project deleted successfully', {
+      position: 'bottom-right',
+      autoClose: 2000,
+    })
+    deleteProject(project.id)
+  }
 
   return (
     <motion.div
@@ -52,7 +61,7 @@ function ProyectCard({ project }: props) {
           title="Are you sure you want to delete this project?"
           open={true}
           onClose={() => setDeleteDialog(false)}
-          onAction={() => deleteProject(project.id)}
+          onAction={onDeleteProject}
         />
       )}
       {openOptions && (

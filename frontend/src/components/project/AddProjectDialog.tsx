@@ -1,6 +1,7 @@
 import useProjects from '@/hooks/useProjects'
 import { ProjectRequestype } from '@/types/dataTypes'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 interface AddTaskDialog {
   open: boolean
   onClose: () => void
@@ -37,6 +38,10 @@ function AddProjectDialog({ open, onClose }: AddTaskDialog) {
       gradient: [data.background.split(',')[0], data.background.split(',')[1]],
     }
     createProject(newProject)
+    toast.success('Project created successfully', {
+      position: 'bottom-right',
+      autoClose: 2000,
+    })
     onClose()
     reset()
   }
