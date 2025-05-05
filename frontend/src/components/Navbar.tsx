@@ -1,19 +1,44 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import useProjects from '../hooks/useProjects'
+import { useEffect } from 'react'
+import { toast } from 'react-toastify'
+import { Unplug } from 'lucide-react'
 
 function Navbar() {
   const { projects, isLoading, isError } = useProjects()
   const navigate = useNavigate()
   const { id } = useParams()
 
+  useEffect(() => {
+    if (isError) {
+      toast.error('Error loading projects', {
+        position: 'bottom-right',
+        autoClose: 2000,
+      })
+    }
+  }, [isError])
+
   return (
     <nav className="w-full h-full bg-[#2b3136] flex flex-col shadow-lg z-10">
       <div className="flex-1 overflow-y-auto p-4">
         <div className="space-y-1">
+          <p className="text-white font-bold">Projects</p>
           {isLoading ? (
-            <p>Loading projects...</p>
+            <>
+              <span className="h-4 w-3/4 rounded-md bg-appLight inline-block animate-pulse"></span>
+              <span className="h-4 w-3/4 rounded-md bg-appLight inline-block animate-pulse"></span>
+              <span className="h-4 w-3/4 rounded-md bg-appLight inline-block animate-pulse"></span>
+              <span className="h-4 w-3/4 rounded-md bg-appLight inline-block animate-pulse"></span>
+            </>
           ) : isError ? (
-            <p className="text-red-600">Error loading projects</p>
+            <>
+              <div className="flex flex-col items-center justify-center text-red-600">
+                <span>
+                  <Unplug />
+                </span>
+                <p>Error loading projects</p>
+              </div>
+            </>
           ) : (
             projects?.map((project, index) => (
               <div

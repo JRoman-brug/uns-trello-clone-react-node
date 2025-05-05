@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react'
 import ConfirmDialog from '@/components/dialog/ConfirmDialog'
 import OptionsMenu from '@/components/ui/OptionsMenu'
 import { toast } from 'react-toastify'
+import { Unplug } from 'lucide-react'
 
 interface props {
   list: ListType
@@ -23,6 +24,15 @@ function ListTask({ list }: props) {
   const { id } = useParams()
   const { deleteList } = useLists(id)
   const { tasks, isLoading, isError } = useTasks(list.id)
+
+  useEffect(() => {
+    if (isError) {
+      toast.error('Error loading task', {
+        position: 'bottom-right',
+        autoClose: 2000,
+      })
+    }
+  }, [isError])
 
   useEffect(() => {
     console.log(
@@ -84,7 +94,12 @@ function ListTask({ list }: props) {
                 <SkeletonTask />
               </>
             ) : isError ? (
-              <p className="text-red-600">Error loading tasks</p>
+              <div className="flex flex-col items-center justify-center w-full h-20 bg-background-dark rounded-md gap-2 text-red-600">
+                <span>
+                  <Unplug />
+                </span>
+                <p>Error loading task</p>
+              </div>
             ) : (
               tasks?.map(task => <Task key={task.id} task={task} />)
             )}

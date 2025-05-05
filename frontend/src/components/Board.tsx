@@ -1,14 +1,25 @@
 import { useParams } from 'react-router-dom'
 import useLists from '@/hooks/useLists'
 import ListTask from '@/components/listTask/ListTask'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaPlus } from 'react-icons/fa'
 import AddListTaskDialog from '@/components/listTask/AddListTaskDialog'
 import ListTaskSkeleton from '@/components/listTask/ListTaskSkeleton'
+import { Unplug } from 'lucide-react'
+import { toast } from 'react-toastify'
 
 function Board() {
   const { id } = useParams()
   const { lists, isLoading, isError } = useLists(id)
+
+  useEffect(() => {
+    if (isError) {
+      toast.error('Error loading lists', {
+        position: 'bottom-right',
+        autoClose: 2000,
+      })
+    }
+  }, [isError])
 
   const [openModal, setOpenModal] = useState(false)
   return (
@@ -21,7 +32,12 @@ function Board() {
           <ListTaskSkeleton />
         </>
       ) : isError ? (
-        <p className="text-red-600">Error loading lists</p>
+        <div className="flex flex-col items-center justify-center w-[250px] h-[100px] bg-background-dark rounded-md gap-2 text-red-600">
+          <span>
+            <Unplug />
+          </span>
+          <p>Error loading lists</p>
+        </div>
       ) : (
         lists?.map(list => <ListTask key={list.id} list={list} />)
       )}
