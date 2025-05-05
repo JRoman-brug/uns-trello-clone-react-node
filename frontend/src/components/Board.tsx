@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom'
-import useLists from '../hooks/useLists'
-import ListTask from './listTask/ListTask'
+import useLists from '@/hooks/useLists'
+import ListTask from '@/components/listTask/ListTask'
 import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa'
-import AddListTaskDialog from './listTask/AddListTaskDialog'
+import AddListTaskDialog from '@/components/listTask/AddListTaskDialog'
+import ListTaskSkeleton from '@/components/listTask/ListTaskSkeleton'
 
 function Board() {
   const { id } = useParams()
@@ -13,7 +14,12 @@ function Board() {
   return (
     <div className="flex w-full min-h-[calc(100vh-4rem)] gap-5 p-4 overflow-x-auto">
       {isLoading ? (
-        <p>Loading lists...</p>
+        <>
+          <ListTaskSkeleton />
+          <ListTaskSkeleton />
+          <ListTaskSkeleton />
+          <ListTaskSkeleton />
+        </>
       ) : isError ? (
         <p className="text-red-600">Error loading lists</p>
       ) : (
