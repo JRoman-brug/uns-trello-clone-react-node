@@ -67,7 +67,7 @@ function AddTaskDialog({ listId, onClose }: AddTaskDialog) {
                 })}
                 id="name"
                 placeholder="Name"
-                className="w-48 h-8 text-white bg-appLight rounded-xs p-2 outline-none placeholder:text-gray-700"
+                className="w-48 h-8 text-black bg-appLight rounded-xs p-2 outline-none placeholder:text-gray-700"
               />
 
               {errors.name?.type === 'required' && (
@@ -96,10 +96,10 @@ function AddTaskDialog({ listId, onClose }: AddTaskDialog) {
               {...register('type', {
                 required: true,
               })}
-              className="w-48 h-8 text-white bg-appLight rounded-xs pl-2 outline-none placeholder:text-gray-700"
+              className="w-48 h-8 text-black bg-appLight rounded-xs pl-2 outline-none placeholder:text-gray-700"
             >
               {taskType.map((type, index) => (
-                <option key={index} className="text-white bg-appLight" value={type}>
+                <option key={index} className="text-black bg-appLight" value={type}>
                   {type}
                 </option>
               ))}
@@ -117,7 +117,7 @@ function AddTaskDialog({ listId, onClose }: AddTaskDialog) {
               })}
               id="description"
               placeholder="Description"
-              className="w-full h-32 resize-none text-white bg-appLight rounded-xs p-2 outline-none placeholder:text-gray-700"
+              className="w-full h-32 resize-none text-black bg-appLight rounded-xs p-2 outline-none placeholder:text-gray-700"
             />
             {errors.description?.type === 'required' && (
               <p role="alert" className="text-red-500">

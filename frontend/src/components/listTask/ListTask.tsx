@@ -65,7 +65,7 @@ function ListTask({ list }: props) {
             onClose={() => setOpenConfirmDialog(false)}
           />
         </CardHeader>
-        <CardContent className="h-full flex flex-col gap-2 overflow-y-scroll">
+        <CardContent className="h-full flex flex-col gap-2 overflow-y-auto">
           <AnimatePresence>
             {isLoading ? (
               <>

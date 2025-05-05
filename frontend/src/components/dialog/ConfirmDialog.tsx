@@ -27,13 +27,13 @@ function ConfirmDialog({ title, description, open, onClose, onAction }: ConfirmD
         {description && <p>{description}</p>}
         <div className="flex justify-between">
           <button
-            className="hover:bg-red-500 transition-colors px-2 py-1 rounded-sm"
+            className="text-white hover:bg-red-500 transition-colors px-2 py-1 rounded-sm"
             onClick={onClose}
           >
             Cancel
           </button>
           <button
-            className="hover:bg-green-500 transition-colors px-2 py-1 rounded-sm"
+            className="text-white hover:bg-green-500 transition-colors px-2 py-1 rounded-sm"
             onClick={onConfirm}
           >
             Confirm
