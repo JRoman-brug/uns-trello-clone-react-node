@@ -22,7 +22,7 @@ interface props {
 function ListTask({ list }: props) {
   const { id } = useParams()
   const { deleteList } = useLists(id)
-  const { tasks, isLoading, isError, deleteTask } = useTasks(list.id)
+  const { tasks, isLoading, isError } = useTasks(list.id)
 
   useEffect(() => {
     console.log(
@@ -86,9 +86,7 @@ function ListTask({ list }: props) {
             ) : isError ? (
               <p className="text-red-600">Error loading tasks</p>
             ) : (
-              tasks?.map(task => (
-                <Task key={task.id} task={task} onClick={() => deleteTask(task.id)} />
-              ))
+              tasks?.map(task => <Task key={task.id} task={task} />)
             )}
           </AnimatePresence>
         </CardContent>

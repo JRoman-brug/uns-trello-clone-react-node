@@ -7,13 +7,15 @@ import { useState } from 'react'
 import EditTaskDialog from './EditTaskDialog'
 import TaskDialog from './TaskDialog'
 import { toast } from 'react-toastify'
+import useTasks from '@/hooks/useTasks'
 
 interface props {
   task: TaskType
-  onClick: () => void
 }
 
-function Task({ task, onClick }: props) {
+function Task({ task }: props) {
+  const { deleteTask } = useTasks(task.listId)
+
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false)
   const [openEditTaskDialog, setOpenEditTaskDialog] = useState(false)
   const [openTaskDialog, setOpenTaskDialog] = useState(false)
@@ -23,7 +25,7 @@ function Task({ task, onClick }: props) {
       position: 'bottom-right',
       autoClose: 2000,
     })
-    onClick()
+    deleteTask(task.id)
   }
   return (
     <motion.div
@@ -34,7 +36,7 @@ function Task({ task, onClick }: props) {
       className="bg-appDarkAccent shrink-0 rounded-lg p-2"
       onClick={() => setOpenTaskDialog(true)}
     >
-      <Badge className="bg-appPrimary">Diseño</Badge>
+      <Badge className="bg-appPrimary">{task.type}</Badge>
       <div className="flex justify-between gap-2 items-center text-appLightDark text-md font-normal">
         <h3>{task.name}</h3>
         <div className="flex gap-1">
