@@ -120,9 +120,11 @@ function ListTask({ list }: props) {
           <LuPlus size={16} />
           <span>Add Task</span>
         </button>
-        {openAddTaskDialog && (
-          <AddTaskDialog listId={list.id} onClose={() => setOpenAddTaskDialog(false)} />
-        )}
+        <AddTaskDialog
+          isOpen={openAddTaskDialog}
+          listId={list.id}
+          onClose={() => setOpenAddTaskDialog(false)}
+        />
       </Card>
     </>
   )

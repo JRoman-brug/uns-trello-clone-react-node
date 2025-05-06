@@ -53,17 +53,18 @@ function ProyectCard({ project }: props) {
         </div>
       </div>
       <IoIosLock size={15} className="text-white" />
-      {updateDialog && (
-        <EditProjectDialog onClose={() => setUpdateDialog(false)} projectId={project.id} />
-      )}
-      {deleteDialog && (
-        <ConfirmDialog
-          title="Are you sure you want to delete this project?"
-          open={true}
-          onClose={() => setDeleteDialog(false)}
-          onAction={onDeleteProject}
-        />
-      )}
+
+      <EditProjectDialog
+        isOpen={updateDialog}
+        onClose={() => setUpdateDialog(false)}
+        projectId={project.id}
+      />
+      <ConfirmDialog
+        title="Are you sure you want to delete this project?"
+        open={deleteDialog}
+        onClose={() => setDeleteDialog(false)}
+        onAction={onDeleteProject}
+      />
       {openOptions && (
         <OptionsMenu
           close={() => setOpenOptions(false)}

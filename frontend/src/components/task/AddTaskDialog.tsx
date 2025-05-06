@@ -4,6 +4,7 @@ import { TaskRequestType } from '@/types/dataTypes'
 import { toast } from 'react-toastify'
 
 interface AddTaskDialog {
+  isOpen: boolean
   listId: string
   onClose: () => void
 }
@@ -12,7 +13,7 @@ type TaskForm = {
   type: 'Design' | 'Development' | 'Testing' | 'Deployment'
   description: string
 }
-function AddTaskDialog({ listId, onClose }: AddTaskDialog) {
+function AddTaskDialog({ isOpen, listId, onClose }: AddTaskDialog) {
   const { createTask } = useTasks(listId)
   const {
     register,
@@ -47,11 +48,11 @@ function AddTaskDialog({ listId, onClose }: AddTaskDialog) {
   const taskType = ['Design', 'Development', 'Testing', 'Deployment']
   return (
     <div
-      className="fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors  bg-[#0008]"
+      className={`fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors ${isOpen ? 'visible bg-[#0008]' : 'invisible'}`}
       onClick={onCancel}
     >
       <div
-        className="w-xl h-fit mx-4 flex flex-col gap-4 bg-background-dark z-150 rounded-sm shadow p-6 transition-all scale-100 opacity-100"
+        className={`w-xl h-fit mx-4 flex flex-col gap-4 bg-background-dark z-150 rounded-sm shadow p-6 transition-all ${isOpen ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
         onClick={e => e.stopPropagation()}
       >
         <form

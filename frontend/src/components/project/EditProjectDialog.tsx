@@ -2,6 +2,7 @@ import useProjects from '@/hooks/useProjects'
 import { ProjectType } from '@/types/dataTypes'
 import { SubmitHandler, useForm } from 'react-hook-form'
 interface AddTaskDialog {
+  isOpen: boolean
   onClose: () => void
   projectId: string
 }
@@ -11,7 +12,7 @@ type ProjectForm = {
   background: string
 }
 
-function EditProjectDialog({ onClose, projectId }: AddTaskDialog) {
+function EditProjectDialog({ isOpen, onClose, projectId }: AddTaskDialog) {
   const { projects, updateProject } = useProjects()
   const project = projects?.find(project => project.id === projectId)
 
@@ -51,17 +52,18 @@ function EditProjectDialog({ onClose, projectId }: AddTaskDialog) {
 
   const color = watch('background')
 
-  const onCancel = () => {
+  const onCancel = (e: React.MouseEvent) => {
+    e.stopPropagation()
     reset()
     onClose()
   }
   return (
     <div
-      className="fixed inset-0 m-0 w-screen h-screen z-1000 flex justify-center items-center transition-colors visible bg-[#0008]"
+      className={`fixed inset-0 m-0 w-screen h-screen z-1000 flex justify-center items-center transition-colors ${isOpen ? 'visible bg-[#0008]' : 'invisible'} `}
       onClick={onCancel}
     >
       <div
-        className="w-xl h-fit bg-background-dark-accent z-150 rounded-sm shadow px-6 py-4 transition-all scale-100 opacity-100"
+        className={`w-xl h-fit bg-background-dark-accent z-150 rounded-sm shadow px-6 py-4 transition-all ${isOpen ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
         onClick={e => e.stopPropagation()}
       >
         <form

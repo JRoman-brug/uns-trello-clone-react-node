@@ -32,7 +32,6 @@ function Task({ task }: props) {
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       exit={{ scale: 0 }}
-      transition={{ delay: 0.5 }}
       className="bg-appDarkAccent shrink-0 rounded-lg p-2"
       onClick={() => setOpenTaskDialog(true)}
     >
