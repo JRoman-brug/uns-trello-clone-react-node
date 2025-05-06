@@ -13,7 +13,6 @@ interface EditListTaskDialog {
 
 type ListTaskForm = {
   name: string
-  color: string
 }
 
 function EditListTaskDialog({ list, open, onClose }: EditListTaskDialog) {
@@ -41,7 +40,6 @@ function EditListTaskDialog({ list, open, onClose }: EditListTaskDialog) {
     const newList: ListType = {
       ...list,
       name: data.name,
-      color: 'blue',
     }
     toast.success('List update successfully', {
       position: 'bottom-right',

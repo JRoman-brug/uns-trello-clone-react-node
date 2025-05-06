@@ -11,7 +11,6 @@ interface AddListTaskDialog {
 
 type ListTaskForm = {
   name: string
-  color: string
 }
 function AddListTaskDialog({ projectId, open, onClose }: AddListTaskDialog) {
   const { createList } = useLists(projectId)
@@ -20,7 +19,7 @@ function AddListTaskDialog({ projectId, open, onClose }: AddListTaskDialog) {
     formState: { errors },
     reset,
     handleSubmit,
-  } = useForm<ListTaskForm>({ defaultValues: { color: 'blue' } })
+  } = useForm<ListTaskForm>()
 
   const onCancel = () => {
     onClose()
@@ -32,7 +31,6 @@ function AddListTaskDialog({ projectId, open, onClose }: AddListTaskDialog) {
     const newList: ListRequestType = {
       name: data.name,
       projectId: projectId,
-      color: 'blue',
     }
     toast.success('List created successfully', {
       position: 'bottom-right',
@@ -42,8 +40,6 @@ function AddListTaskDialog({ projectId, open, onClose }: AddListTaskDialog) {
     reset()
     onClose()
   }
-
-  const colors = ['red', 'blue', 'green', 'orange', 'pink']
   return (
     <div
       className={`fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors ${open ? 'visible bg-[#0008]' : 'invisible'}`}
@@ -69,27 +65,14 @@ function AddListTaskDialog({ projectId, open, onClose }: AddListTaskDialog) {
             />
             {errors.name?.type === 'required' && (
               <p role="alert" className="text-red-500">
+                Name is required
+              </p>
+            )}
+            {errors.name?.type === 'pattern' && (
+              <p role="alert" className="text-red-500">
                 Only alphanumeric characters
               </p>
             )}
-          </div>
-          <div>
-            <label className="block" htmlFor="color">
-              Select a color
-            </label>
-            <select
-              defaultValue={'blue'}
-              className="bg-white text-black w-1/2"
-              {...register('color')}
-              name="color"
-              id=""
-            >
-              {colors.map((elem, index) => (
-                <option key={index} value={`${elem}`}>
-                  {elem}
-                </option>
-              ))}
-            </select>
           </div>
           <div className="flex  justify-between">
             <button

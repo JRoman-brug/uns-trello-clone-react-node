@@ -13,14 +13,12 @@ export type ProjectRequestype = {
 export type ListType = {
   id: string
   name: string
-  color: 'red' | 'blue' | 'green' | 'orange' | 'pink'
   tasks: string[]
   projectId: string
 }
 
 export type ListRequestType = {
   name: string
-  color: 'red' | 'blue' | 'green' | 'orange' | 'pink'
   projectId: string
 }
 
