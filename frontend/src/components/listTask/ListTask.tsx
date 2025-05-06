@@ -15,6 +15,7 @@ import ConfirmDialog from '@/components/dialog/ConfirmDialog'
 import OptionsMenu from '@/components/ui/OptionsMenu'
 import { toast } from 'react-toastify'
 import { Unplug } from 'lucide-react'
+import EditListTaskDialog from './EditListTaskDialog'
 
 interface props {
   list: ListType
@@ -76,7 +77,13 @@ function ListTask({ list }: props) {
               openDeleteDialog={() => setOpenConfirmDialog(true)}
             />
           )}
-          {openUpdateDialog /* TODO EditListDialog */}
+
+          <EditListTaskDialog
+            list={list}
+            open={openUpdateDialog}
+            onClose={() => setOpenUpdateDialog(false)}
+          />
+
           <ConfirmDialog
             onAction={onDeleteTask}
             title="Are you sure you want to delete this list?"
