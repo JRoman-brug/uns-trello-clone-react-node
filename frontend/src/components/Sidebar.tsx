@@ -16,6 +16,7 @@ function Sidebar() {
         <button
           className="absolute top-4 -right-[30px] bg-[#2b3136] cursor-pointer text-white rounded-r-full"
           onClick={() => setOpenSidebar(!openSidebar)}
+          aria-label="Open project menu"
         >
           <ChevronRight size={32} />
         </button>

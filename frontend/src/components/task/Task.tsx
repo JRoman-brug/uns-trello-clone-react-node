@@ -36,7 +36,7 @@ function Task({ task }: props) {
       className="bg-appDarkAccent shrink-0 rounded-lg p-2"
       onClick={() => setOpenTaskDialog(true)}
     >
-      <Badge className="bg-appPrimary">{task.type}</Badge>
+      <Badge className="bg-white text-black">{task.type}</Badge>
       <div className="flex justify-between gap-2 items-center text-appLightDark text-md font-normal">
         <h3>{task.name}</h3>
         <div className="flex gap-1">
@@ -46,6 +46,7 @@ function Task({ task }: props) {
               setOpenEditTaskDialog(true)
             }}
             className="p-1 rounded-md text-gray-500 hover:bg-appLightDark/25 hover:text-appLight transition-all duration-200 cursor-pointer"
+            aria-label={`Edit task`}
           >
             <Pen size={18} />
           </button>
@@ -62,6 +63,7 @@ function Task({ task }: props) {
               e.stopPropagation()
               setOpenConfirmDialog(true)
             }}
+            aria-label={`Delete task`}
           >
             <Trash2 size={18} />
           </button>

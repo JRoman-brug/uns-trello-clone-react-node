@@ -20,6 +20,7 @@ function HomePage() {
           <div
             onClick={() => setOpenModal(true)}
             className="w-[250px] h-[100px] flex justify-center items-center cursor-pointer border-[3px] border-white border-dashed hover:scale-105 transition-all duration-200 ease-in-out"
+            aria-label="Create new project"
           >
             <FaPlus size={30} className="text-white" />
           </div>

@@ -108,6 +108,7 @@ function ListTask({ list }: props) {
         <button
           className="flex gap-2 items-center text-appLightDark rounded-sm px-2 py-1 w-full hover:bg-appLightDark/25 cursor-pointer transition-all duration-200"
           onClick={() => setOpenAddTaskDialog(true)}
+          aria-label="Add task"
         >
           <LuPlus size={16} />
           <span>Add Task</span>
