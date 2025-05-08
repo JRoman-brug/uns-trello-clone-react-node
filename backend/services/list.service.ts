@@ -1,4 +1,4 @@
-import { ListType, ListRequestType } from '../types/dataTypes'
+import { ListType, ListRequestType, ProjectType } from '../types/dataTypes'
 import { v4 as uuidv4 } from 'uuid'
 import lists from '../data/lists'
 import projects from '../data/projects'
@@ -47,9 +47,10 @@ export const deleteList = async (id: string): Promise<void> => {
   if (listIndex === -1) throw new Error('List not found.')
 
   lists[listIndex].tasks.forEach(taskId => deleteTask(taskId))
-  projects
-    .find(project => project.id === lists[listIndex].projectId)
-    ?.lists.filter(listId => listId !== id)
+
+  const project = projects.find(project => project.id === lists[listIndex].projectId) as ProjectType
+  project.lists = project.lists.filter(listId => listId !== id)
+
   lists.splice(listIndex, 1)
 
   return await new Promise(resolve => resolve())
