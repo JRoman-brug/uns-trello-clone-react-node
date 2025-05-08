@@ -1,5 +1,5 @@
-import useProjects from '@/hooks/useProjects'
-import { ProjectType } from '@/types/dataTypes'
+import useProjects from '../../hooks/useProjects'
+import { ProjectType } from '../../types/dataTypes'
 import { SubmitHandler, useForm } from 'react-hook-form'
 interface AddTaskDialog {
   isOpen: boolean

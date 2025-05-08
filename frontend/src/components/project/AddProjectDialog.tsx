@@ -1,5 +1,5 @@
-import useProjects from '@/hooks/useProjects'
-import { ProjectRequestype } from '@/types/dataTypes'
+import useProjects from '../../hooks/useProjects'
+import { ProjectRequestype } from '../../types/dataTypes'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 interface AddTaskDialog {

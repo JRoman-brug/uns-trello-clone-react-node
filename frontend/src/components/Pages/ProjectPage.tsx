@@ -1,7 +1,7 @@
 import Board from '../Board'
 import Sidebar from '../Sidebar'
 import { useParams } from 'react-router-dom'
-import useProjects from '@/hooks/useProjects'
+import useProjects from '../../hooks/useProjects'
 
 function ProjectPage() {
   const { id } = useParams()

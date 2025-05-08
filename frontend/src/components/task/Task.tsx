@@ -1,13 +1,13 @@
-import { TaskType } from '@/types/dataTypes'
-import { Badge } from '@/components/ui/badge'
+import { TaskType } from '../../types/dataTypes'
+import { Badge } from '../ui/badge'
 import { Pen, Trash2 } from 'lucide-react'
 import { motion } from 'motion/react'
-import ConfirmDialog from '@/components/dialog/ConfirmDialog'
+import ConfirmDialog from '../dialog/ConfirmDialog'
 import { useState } from 'react'
 import EditTaskDialog from './EditTaskDialog'
 import TaskDialog from './TaskDialog'
 import { toast } from 'react-toastify'
-import useTasks from '@/hooks/useTasks'
+import useTasks from '../../hooks/useTasks'
 
 interface props {
   task: TaskType

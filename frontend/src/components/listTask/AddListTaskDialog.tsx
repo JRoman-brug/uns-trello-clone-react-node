@@ -1,5 +1,5 @@
-import useLists from '@/hooks/useLists'
-import { ListRequestType } from '@/types/dataTypes'
+import useLists from '../../hooks/useLists'
+import { ListRequestType } from '../../types/dataTypes'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 

@@ -1,8 +1,8 @@
-import { ListType } from '@/types/dataTypes'
+import { ListType } from '../../types/dataTypes'
 import { useForm } from 'react-hook-form'
 import { SubmitHandler } from 'react-hook-form'
 import { toast } from 'react-toastify'
-import useLists from '@/hooks/useLists'
+import useLists from '../../hooks/useLists'
 import { useEffect } from 'react'
 
 interface EditListTaskDialog {

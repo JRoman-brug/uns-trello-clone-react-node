@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
-import useTasks from '@/hooks/useTasks'
-import { TaskRequestType } from '@/types/dataTypes'
+import useTasks from '../../hooks/useTasks'
+import { TaskRequestType } from '../../types/dataTypes'
 import { toast } from 'react-toastify'
 
 interface AddTaskDialog {
