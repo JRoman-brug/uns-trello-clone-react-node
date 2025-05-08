@@ -12,5 +12,6 @@ export default defineConfig({
   },
   server: {
     host: 'react-express-popp-brugnoni.onrender.com',
+    port: 4001,
   },
 })
