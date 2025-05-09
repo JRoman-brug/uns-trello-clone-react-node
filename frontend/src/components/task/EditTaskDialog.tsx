@@ -1,8 +1,7 @@
-//React-hook-form
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { toast } from 'react-toastify'
-import useTasks from '@/hooks/useTasks'
-import { TaskType } from '@/types/dataTypes'
+import useTasks from '../../hooks/useTasks'
+import { TaskType } from '../../types/dataTypes'
 
 interface EditTaskDialog {
   task: TaskType

@@ -1,18 +1,18 @@
-import { ListType } from '@/types/dataTypes'
-import Task from '@/components/task/Task'
-import AddTaskDialog from '@/components/task/AddTaskDialog'
-import useTasks from '@/hooks/useTasks'
-import useLists from '@/hooks/useLists'
+import { ListType } from '../../types/dataTypes'
+import Task from '../task/Task'
+import AddTaskDialog from '../task/AddTaskDialog'
+import useTasks from '../../hooks/useTasks'
+import useLists from '../../hooks/useLists'
 import { useParams } from 'react-router-dom'
 import { AnimatePresence } from 'motion/react'
 import { LuPlus } from 'react-icons/lu'
 import { BsThreeDots } from 'react-icons/bs'
-import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Badge } from '../ui/badge'
+import { Card, CardContent, CardHeader } from '../ui/card'
 import SkeletonTask from '../task/SkeletonTask'
 import { useEffect, useState } from 'react'
-import ConfirmDialog from '@/components/dialog/ConfirmDialog'
-import OptionsMenu from '@/components/ui/OptionsMenu'
+import ConfirmDialog from '../dialog/ConfirmDialog'
+import OptionsMenu from '../ui/OptionsMenu'
 import { toast } from 'react-toastify'
 import { Unplug } from 'lucide-react'
 import EditListTaskDialog from './EditListTaskDialog'
@@ -56,7 +56,7 @@ function ListTask({ list }: props) {
 
   return (
     <>
-      <Card className="flex flex-col gap-2 min-w-60 max-w-60 h-fit max-h-[calc(100vh-8rem)] py-3 px-3 bg-appDark">
+      <Card className="flex flex-col gap-2 min-w-80 max-w-80 h-fit max-h-[calc(100vh-8rem)] py-3 px-3 bg-appDark">
         <CardHeader className="flex justify-between relative">
           <div className="flex gap-4">
             <h2 className="text-appLight text-lg font-semibold">{list.name} </h2>

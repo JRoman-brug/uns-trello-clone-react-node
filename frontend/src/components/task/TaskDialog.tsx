@@ -1,5 +1,5 @@
-import { TaskType } from '@/types/dataTypes'
-import { Badge } from '@/components/ui/badge'
+import { TaskType } from '../../types/dataTypes'
+import { Badge } from '../ui/badge'
 import { Check, X } from 'lucide-react'
 
 interface TaskDialog {

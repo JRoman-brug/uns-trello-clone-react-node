@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { motion } from 'motion/react'
 import EditProjectDialog from './EditProjectDialog'
 import ConfirmDialog from '../dialog/ConfirmDialog'
-import useProjects from '@/hooks/useProjects'
+import useProjects from '../../hooks/useProjects'
 import { toast } from 'react-toastify'
 interface props {
   project: ProjectType

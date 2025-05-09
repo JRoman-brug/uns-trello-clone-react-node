@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import SkeletonTask from '@/components/task/SkeletonTask'
+import { Card, CardContent, CardHeader } from '../ui/card'
+import SkeletonTask from '../task/SkeletonTask'
 import { LuPlus } from 'react-icons/lu'
 import { BsThreeDots } from 'react-icons/bs'
 

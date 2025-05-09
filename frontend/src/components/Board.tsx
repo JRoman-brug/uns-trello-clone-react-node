@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom'
-import useLists from '@/hooks/useLists'
-import ListTask from '@/components/listTask/ListTask'
 import { useEffect, useState } from 'react'
 import { FaPlus } from 'react-icons/fa'
-import AddListTaskDialog from '@/components/listTask/AddListTaskDialog'
-import ListTaskSkeleton from '@/components/listTask/ListTaskSkeleton'
 import { Unplug } from 'lucide-react'
 import { toast } from 'react-toastify'
+import useLists from '../hooks/useLists'
+import ListTaskSkeleton from './listTask/ListTaskSkeleton'
+import ListTask from './listTask/ListTask'
+import AddListTaskDialog from './listTask/AddListTaskDialog'
 
 function Board() {
   const { id } = useParams()
