@@ -14,7 +14,7 @@ function HomePage() {
           <FaFlipboard size={20} className="text-appPrimary size-5" />
           <span className="text-appPrimary text-4xl font-secondary">TUS PROYECTOS</span>
         </div>
-        <div className="w-9/12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[30px] mt-10 mx-auto">
+        <div className="w-11/12 grid justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-10 mt-10 mx-auto">
           {projects?.map(project => <ProjectCard key={project.id} project={project} />)}
 
           <div

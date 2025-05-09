@@ -3,6 +3,7 @@ import useProjects from '../hooks/useProjects'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { Unplug } from 'lucide-react'
+import { FaHome } from 'react-icons/fa'
 
 function Navbar() {
   const { projects, isLoading, isError } = useProjects()
@@ -22,7 +23,12 @@ function Navbar() {
     <nav className="w-full h-full bg-[#2b3136] flex flex-col shadow-lg z-10">
       <div className="flex-1 overflow-y-auto p-4">
         <div className="space-y-1">
-          <p className="text-white font-bold">Projects</p>
+          <div className="flex gap-2 mb-2 text-white">
+            <button onClick={() => navigate('/')}>
+              <FaHome size={24} />
+            </button>
+            <p className="font-bold">Projects</p>
+          </div>
           {isLoading ? (
             <>
               <span className="h-4 w-3/4 rounded-md bg-appLight inline-block animate-pulse"></span>
