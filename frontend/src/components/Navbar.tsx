@@ -20,11 +20,11 @@ function Navbar() {
   }, [isError])
 
   return (
-    <nav className="w-full h-full bg-[#2b3136] flex flex-col shadow-lg z-10">
+    <nav className="w-full h-full bg-[#2b3136] flex flex-col shadow-lg z-10 app-scrollbar">
       <div className="flex-1 overflow-y-auto p-4">
         <div className="space-y-1">
           <div className="flex gap-2 mb-2 text-white">
-            <button onClick={() => navigate('/')}>
+            <button onClick={() => navigate('/')} className="cursor-pointer">
               <FaHome size={24} />
             </button>
             <p className="font-bold">Projects</p>
