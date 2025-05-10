@@ -18,6 +18,7 @@ const useLists = (projectId: string | undefined) => {
     mutationFn: createList,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['lists', projectId] })
+      queryClient.refetchQueries({ queryKey: ['lists', projectId] })
     },
   })
 
@@ -25,6 +26,7 @@ const useLists = (projectId: string | undefined) => {
     mutationFn: updateList,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['lists', projectId] })
+      queryClient.refetchQueries({ queryKey: ['lists', projectId] })
     },
   })
 
@@ -32,6 +34,7 @@ const useLists = (projectId: string | undefined) => {
     mutationFn: deleteList,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['lists', projectId] })
+      queryClient.refetchQueries({ queryKey: ['lists', projectId] })
     },
   })
 

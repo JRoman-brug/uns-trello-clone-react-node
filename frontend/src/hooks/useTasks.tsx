@@ -17,13 +17,15 @@ const useTasks = (listId: string | undefined) => {
   const createTaskMutation = useMutation({
     mutationFn: createTask,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tasks'] })
+      queryClient.invalidateQueries({ queryKey: ['tasks', listId] })
+      queryClient.refetchQueries({ queryKey: ['lists'] })
     },
   })
   const updateTaskMutation = useMutation({
     mutationFn: updateTask,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tasks', listId] })
+      queryClient.refetchQueries({ queryKey: ['lists'] })
     },
   })
 
@@ -31,6 +33,7 @@ const useTasks = (listId: string | undefined) => {
     mutationFn: updateTaskStatus,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tasks', listId] })
+      queryClient.refetchQueries({ queryKey: ['lists'] })
     },
   })
 
@@ -38,6 +41,7 @@ const useTasks = (listId: string | undefined) => {
     mutationFn: deleteTask,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['tasks', listId] })
+      queryClient.refetchQueries({ queryKey: ['lists'] })
     },
   })
 
