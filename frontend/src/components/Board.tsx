@@ -49,7 +49,7 @@ function Board() {
       </div>
       <AddListTaskDialog
         projectId={id || ''}
-        open={openModal}
+        isOpen={openModal}
         onClose={() => setOpenModal(false)}
       />
     </div>

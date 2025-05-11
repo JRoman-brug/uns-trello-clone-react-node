@@ -60,13 +60,23 @@ function EditListTaskDialog({ list, open, onClose }: EditListTaskDialog) {
         className={`w-[400px] h-fit mx-4 bg-background-dark z-150 rounded-sm shadow p-6 transition-all ${open ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
         onClick={e => e.stopPropagation()}
       >
-        <form className="text-white flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label className="block mb-1" htmlFor="Name">
-              Name list task
-            </label>
+        <form
+          className="text-white flex flex-col justify-center items-center gap-4 w-full"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="w-full">
+            <p role="alert" className="text-red-500 h-4">
+              {errors.name?.type === 'required'
+                ? 'Name is required'
+                : errors.name?.type === 'pattern'
+                  ? 'Only alphanumeric characters'
+                  : ''}
+            </p>
+          </div>
+          <div className="flex flex-col gap-2 w-full">
+            <label htmlFor="Name">Name list task</label>
             <input
-              className="w-1/2 bg-white text-black pl-1 rounded-xs"
+              className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700 "
               {...register('name', {
                 required: true,
                 pattern: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$/,
@@ -74,31 +84,12 @@ function EditListTaskDialog({ list, open, onClose }: EditListTaskDialog) {
               type="text"
               maxLength={20}
             />
-            {errors.name?.type === 'required' && (
-              <p role="alert" className="text-red-500">
-                Name is required
-              </p>
-            )}
-            {errors.name?.type === 'pattern' && (
-              <p role="alert" className="text-red-500">
-                Only alphanumeric characters
-              </p>
-            )}
           </div>
-          <div className="flex  justify-between">
-            <button
-              onClick={onCancel}
-              type="button"
-              className="rounded-sm px-4 py-2 transition-colors hover:bg-red-500"
-            >
-              Cancel
-            </button>
-            <input
-              className="rounded-sm px-4 py-2 transition-colors hover:bg-green-500"
-              type="submit"
-              value="Create"
-            />
-          </div>
+          <input
+            type="submit"
+            value="Update"
+            className="cursor-pointer w-1/3 p-1 rounded-sm bg-appSecondary hover:bg-appSecondary/75 hover:scale-102 hover:text-white transition-all duration-200"
+          />
         </form>
       </div>
     </div>

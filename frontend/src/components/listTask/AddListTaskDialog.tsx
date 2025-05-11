@@ -5,14 +5,14 @@ import { toast } from 'react-toastify'
 
 interface AddListTaskDialog {
   projectId: string
-  open: boolean
+  isOpen: boolean
   onClose: () => void
 }
 
 type ListTaskForm = {
   name: string
 }
-function AddListTaskDialog({ projectId, open, onClose }: AddListTaskDialog) {
+function AddListTaskDialog({ projectId, isOpen, onClose }: AddListTaskDialog) {
   const { createList } = useLists(projectId)
   const {
     register,
@@ -42,47 +42,49 @@ function AddListTaskDialog({ projectId, open, onClose }: AddListTaskDialog) {
   }
   return (
     <div
-      className={`fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors ${open ? 'visible bg-[#0008]' : 'invisible'}`}
+      className={`fixed inset-0 m-0 w-screen h-screen z-1000 flex justify-center items-center transition-colors ${isOpen ? 'visible bg-[#0008]' : 'invisible'}`}
       onClick={onCancel}
     >
       <div
-        className={`w-[400px] h-fit mx-4 bg-background-dark z-150 rounded-sm shadow p-6 transition-all ${open ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
+        className={`w-xl h-fit bg-background-dark-accent z-150 rounded-sm shadow px-6 py-4 transition-all ${isOpen ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
         onClick={e => e.stopPropagation()}
       >
-        <form className="text-white flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label className="block mb-1" htmlFor="Name">
-              Name list task
-            </label>
-            <input
-              className="w-1/2 bg-white text-black pl-1 rounded-xs"
-              {...register('name', {
-                required: true,
-                pattern: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$/,
-              })}
-              type="text"
-              maxLength={20}
-            />
-            {errors.name?.type === 'required' && (
-              <p role="alert" className="text-red-500">
-                Name is required
-              </p>
-            )}
-            {errors.name?.type === 'pattern' && (
-              <p role="alert" className="text-red-500">
-                Only alphanumeric characters
-              </p>
-            )}
+        <form
+          className="flex flex-col gap-4 text-appLight justify-center items-center w-full"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="w-full">
+            <p role="alert" className="text-red-500 h-4">
+              {errors.name?.type === 'required'
+                ? 'Name is required'
+                : errors.name?.type === 'pattern'
+                  ? 'Only alphanumeric characters'
+                  : ''}
+            </p>
           </div>
-          <div className="flex  justify-between">
+          <div className="flex flex-wrap justify-center items-end w-full">
+            <div className="flex flex-col gap-2 w-full">
+              <label htmlFor="Name">Name list task</label>
+              <input
+                className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
+                {...register('name', {
+                  required: true,
+                  pattern: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$/,
+                })}
+                type="text"
+                maxLength={20}
+              />
+            </div>
+          </div>
+          <div className="flex justify-between w-full">
             <button
               onClick={onCancel}
-              className="rounded-sm px-4 py-2 transition-colors hover:bg-red-500"
+              className="text-white rounded-sm px-4 py-2 transition-colors cursor-pointer bg-red-500 md:bg-[#0000] hover:bg-red-500"
             >
               Cancel
             </button>
             <input
-              className="rounded-sm px-4 py-2 transition-colors hover:bg-green-500"
+              className="text-white rounded-sm px-4 py-2 transition-colors cursor-pointer bg-green-500 md:bg-[#0000] hover:bg-green-500"
               type="submit"
               value="Create"
             />

@@ -24,7 +24,7 @@ function HomePage() {
           >
             <FaPlus size={30} className="text-white" />
           </div>
-          <AddProjectDialog open={openModal} onClose={() => setOpenModal(false)} />
+          <AddProjectDialog isOpen={openModal} onClose={() => setOpenModal(false)} />
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { ProjectRequestype } from '../../types/dataTypes'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 interface AddTaskDialog {
-  open: boolean
+  isOpen: boolean
   onClose: () => void
 }
 
@@ -12,10 +12,9 @@ type ProjectForm = {
   background: string
 }
 
-function AddProjectDialog({ open, onClose }: AddTaskDialog) {
+function AddProjectDialog({ isOpen, onClose }: AddTaskDialog) {
   const { createProject } = useProjects()
 
-  //Colors input
   const colors = [
     { key: 'Blue', color: '#00d2ff,#3a47d5' },
     { key: 'Red', color: '#B90091,#ED6A5A' },
@@ -23,7 +22,6 @@ function AddProjectDialog({ open, onClose }: AddTaskDialog) {
     { key: 'Violet', color: '#3F2B96,#A8C0FF' },
     { key: 'Orange', color: '#BB1900,#FFB000' },
   ]
-  //Form
   const {
     register,
     formState: { errors },
@@ -48,70 +46,74 @@ function AddProjectDialog({ open, onClose }: AddTaskDialog) {
 
   const color = watch('background')
 
-  //Manage modal
   const onCancel = () => {
     reset()
     onClose()
   }
   return (
-    // Overlay
     <div
-      className={`fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors ${open ? 'visible bg-[#0008]' : 'invisible'}`}
+      className={`fixed inset-0 m-0 w-screen h-screen z-1000 flex justify-center items-center transition-colors ${isOpen ? 'visible bg-[#0008]' : 'invisible'}`}
       onClick={onCancel}
     >
-      {/* Content */}
       <div
-        className={`w-xl h-fit mx-4 flex flex-col gap-4 bg-background-dark z-150 rounded-sm shadow p-6 transition-all ${open ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
+        className={`w-xl h-fit bg-background-dark-accent z-150 rounded-sm shadow px-6 py-4 transition-all ${isOpen ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
         onClick={e => e.stopPropagation()}
       >
-        <form onSubmit={handleSubmit(onSubmit)} className="text-white flex flex-col gap-2">
-          <div>
-            <label className="block mb-1" htmlFor="name">
-              Project name
-            </label>
-            <div className="flex justify-start items-center gap-2">
-              <input
-                className="w-48 h-8 text-black bg-appLight rounded-xs p-2 outline-none placeholder:text-gray-700"
-                {...register('name', {
-                  required: true,
-                  pattern: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$/,
-                })}
-                placeholder="Name"
-                type="text"
-                maxLength={20}
-              />
-              {errors.name?.type === 'required' && (
-                <p role="alert" className="text-red-500">
-                  Name is required
-                </p>
-              )}
-              {errors.name?.type === 'pattern' && (
-                <p role="alert" className="text-red-500">
-                  Only alphanumeric characters
-                </p>
-              )}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col gap-4 text-appLight justify-center items-center w-full"
+        >
+          <div className="w-full">
+            <p role="alert" className="text-red-500 h-4">
+              {errors.name?.type === 'required'
+                ? 'Name is required'
+                : errors.name?.type === 'pattern'
+                  ? 'Only alphanumeric characters'
+                  : ''}
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center items-end w-full">
+            <div className="flex flex-col gap-4 justify-center w-full md:w-1/2 p-2">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="name">Project name</label>
+                <input
+                  className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
+                  {...register('name', {
+                    required: true,
+                    pattern: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$/,
+                  })}
+                  placeholder="Name"
+                  type="text"
+                  maxLength={20}
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="color">Color</label>
+                <select
+                  id="color"
+                  {...register('background')}
+                  onSelect={e => console.log(e)}
+                  className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
+                >
+                  {colors.map((elem, index) => (
+                    <option key={index} value={elem.color}>
+                      {elem.key}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="flex justify-center items-center w-1/2 h-32 p-2">
+              <div
+                className="w-full h-full transition-colors rounded-sm"
+                style={{ background: `linear-gradient(to bottom right, ${color}` }}
+              ></div>
             </div>
           </div>
-          <div className="flex flex-col justify-center">
-            <label htmlFor="color">Color</label>
-            <select
-              id="color"
-              {...register('background')}
-              onSelect={e => console.log(e)}
-              className="w-48 h-8 mt-1 text-black bg-appLight rounded-xs pl-2 outline-none placeholder:text-gray-700"
-            >
-              {colors.map((elem, index) => (
-                <option key={index} value={elem.color}>
-                  {elem.key}
-                </option>
-              ))}
-            </select>
-            <div
-              className="w-full mt-4 h-40 transition-colors"
-              style={{ background: `linear-gradient(to bottom right, ${color}` }}
-            ></div>
-          </div>
-          <input type="submit" />
+          <input
+            type="submit"
+            className="cursor-pointer w-1/3 p-1 rounded-sm bg-appSecondary hover:bg-appSecondary/75 hover:scale-102 hover:text-white transition-all duration-200"
+          />
         </form>
       </div>
     </div>

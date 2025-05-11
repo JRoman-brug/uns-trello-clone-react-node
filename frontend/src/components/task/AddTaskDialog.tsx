@@ -48,22 +48,31 @@ function AddTaskDialog({ isOpen, listId, onClose }: AddTaskDialog) {
   const taskType = ['Design', 'Development', 'Testing', 'Deployment']
   return (
     <div
-      className={`fixed inset-0 m-0 w-screen h-screen z-100 flex justify-center items-center transition-colors ${isOpen ? 'visible bg-[#0008]' : 'invisible'}`}
+      className={`fixed inset-0 m-0 w-screen h-screen z-1000 flex justify-center items-center transition-colors ${isOpen ? 'visible bg-[#0008]' : 'invisible'}`}
       onClick={onCancel}
     >
       <div
-        className={`w-xl h-fit mx-4 flex flex-col gap-4 bg-background-dark z-150 rounded-sm shadow p-6 transition-all ${isOpen ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
+        className={`w-xl h-fit bg-background-dark-accent z-150 rounded-sm shadow px-6 py-4 transition-all ${isOpen ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`}
         onClick={e => e.stopPropagation()}
       >
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="text-white font-app font-normal flex flex-col gap-2"
+          className="flex flex-col gap-4 text-appLight justify-center items-center w-full"
         >
-          <div>
-            <label htmlFor="name" className="block mb-1 ">
-              Task name
-            </label>
-            <div className="flex justify-start items-center gap-2">
+          <div className="w-full">
+            <p role="alert" className="text-red-500 h-4">
+              {errors.name?.type === 'required'
+                ? 'Name is required'
+                : errors.name?.type === 'pattern' || errors.description?.type === 'pattern'
+                  ? 'Only alphanumeric characters'
+                  : errors.description?.type === 'required'
+                    ? 'Description is required'
+                    : ''}
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-between gap-2 items-center w-full md:w-3/4">
+            <div className="flex flex-col gap-2 w-full md:w-7/16">
+              <label htmlFor="name">Task name</label>
               <input
                 {...register('name', {
                   maxLength: 20,
@@ -73,70 +82,44 @@ function AddTaskDialog({ isOpen, listId, onClose }: AddTaskDialog) {
                 })}
                 id="name"
                 placeholder="Name"
-                className="w-48 h-8 text-black bg-appLight rounded-xs p-2 outline-none placeholder:text-gray-700"
+                className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
               />
-
-              {errors.name?.type === 'required' && (
-                <p role="alert" className="text-red-500">
-                  Name es required
-                </p>
-              )}
-              {errors.name?.type === 'maxLength' && (
-                <p role="alert" className="text-red-500">
-                  Max length is 20 characters
-                </p>
-              )}
-              {errors.name?.type === 'pattern' && (
-                <p role="alert" className="text-red-500">
-                  Only alphanumeric characters
-                </p>
-              )}
+            </div>
+            <div className="flex flex-col gap-2 w-full md:w-7/16">
+              <label htmlFor="typeTask">Type task</label>
+              <select
+                defaultValue={'Desing'}
+                {...register('type', {
+                  required: true,
+                })}
+                className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
+              >
+                {taskType.map((type, index) => (
+                  <option key={index} className="text-black bg-appLight" value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex flex-col gap-2 w-full">
+              <label htmlFor="description">Description</label>
+              <textarea
+                {...register('description', {
+                  maxLength: 250,
+                  required: true,
+                  pattern: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$/,
+                })}
+                id="description"
+                placeholder="Description"
+                className="w-full h-32 resize-none text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
+              />
             </div>
           </div>
-          <div>
-            <label htmlFor="typeTask" className="block mb-1">
-              Type task
-            </label>
-            <select
-              defaultValue={'Desing'}
-              {...register('type', {
-                required: true,
-              })}
-              className="w-48 h-8 text-black bg-appLight rounded-xs pl-2 outline-none placeholder:text-gray-700"
-            >
-              {taskType.map((type, index) => (
-                <option key={index} className="text-black bg-appLight" value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor="description" className="block mb-1">
-              Description
-            </label>
-            <textarea
-              {...register('description', {
-                maxLength: 250,
-                required: true,
-                pattern: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$/,
-              })}
-              id="description"
-              placeholder="Description"
-              className="w-full h-32 resize-none text-black bg-appLight rounded-xs p-2 outline-none placeholder:text-gray-700"
-            />
-            {errors.description?.type === 'required' && (
-              <p role="alert" className="text-red-500">
-                Description is required
-              </p>
-            )}
-            {errors.description?.type === 'pattern' && (
-              <p role="alert" className="text-red-500">
-                Only alphanumeric characters
-              </p>
-            )}
-          </div>
-          <button className="bg-app">Submit</button>
+          <input
+            type="submit"
+            value="Update"
+            className="cursor-pointer w-1/3 p-1 rounded-sm bg-appSecondary hover:bg-appSecondary/75 hover:scale-102 hover:text-white transition-all duration-200"
+          />
         </form>
       </div>
     </div>
