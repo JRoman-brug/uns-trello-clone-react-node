@@ -25,7 +25,7 @@ function TaskDialog({ task, open, onClose }: TaskDialog) {
       >
         <h2 className="text-2xl font-bold text-white">{task.name}</h2>
         <Badge className="bg-white text-black">{task.type}</Badge>
-        <p className="text-white">{task.description}</p>
+        <p className="w-full wrap-break-word text-white">{task.description}</p>
         <div className="flex gap-2 items-center text-white">
           <p>Complete:</p>
           {task.isCompleted ? <Check /> : <X />}
