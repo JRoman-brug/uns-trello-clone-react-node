@@ -23,7 +23,7 @@ function Board() {
 
   const [openModal, setOpenModal] = useState(false)
   return (
-    <div className="flex w-full min-h-[calc(100vh-4rem)] gap-5 p-4 overflow-x-auto">
+    <div className="flex w-full min-h-[calc(100vh-4rem)] gap-5 p-4 overflow-x-auto app-scrollbar">
       {isLoading ? (
         <>
           <ListTaskSkeleton />
