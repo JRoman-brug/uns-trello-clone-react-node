@@ -33,7 +33,7 @@ function Task({ task }: props) {
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       exit={{ scale: 0 }}
-      className={`shrink-0 rounded-lg p-2 transition-color ease-in ${task.isCompleted ? 'bg-appDarkAccent/50' : 'bg-appDarkAccent'}`}
+      className={`h-24 shrink-0 rounded-lg p-2 transition-color ease-in ${task.isCompleted ? 'bg-appDarkAccent/50' : 'bg-appDarkAccent'}`}
       onClick={() => setOpenTaskDialog(true)}
     >
       <Badge className="bg-white text-black">{task.type}</Badge>
