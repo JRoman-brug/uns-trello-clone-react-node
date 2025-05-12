@@ -2,11 +2,12 @@ import Board from '../Board'
 import Sidebar from '../Sidebar'
 import { useParams } from 'react-router-dom'
 import useProjects from '../../hooks/useProjects'
+import { useMemo } from 'react'
 
 function ProjectPage() {
   const { id } = useParams()
   const { projects } = useProjects()
-  const project = projects?.find(project => id && project.id === id)
+  const project = useMemo(() => projects?.find(project => id && project.id === id), [projects, id])
   const gradient = project?.gradient ?? ['bg-background-black', 'bg-background-black']
   return (
     <div
