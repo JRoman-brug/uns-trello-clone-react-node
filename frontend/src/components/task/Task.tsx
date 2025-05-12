@@ -88,7 +88,7 @@ function Task({ task }: props) {
 
           <EditTaskDialog
             task={task}
-            open={openEditTaskDialog}
+            isOpen={openEditTaskDialog}
             onClose={() => setOpenEditTaskDialog(false)}
           />
 

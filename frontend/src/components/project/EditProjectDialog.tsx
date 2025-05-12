@@ -68,29 +68,26 @@ function EditProjectDialog({ isOpen, onClose, projectId }: AddTaskDialog) {
       >
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 text-appLight justify-center items-center"
+          className="flex flex-col gap-4 text-appLight justify-center items-center w-full"
         >
-          <div className="w-full h-4">
-            {errors.name?.type === 'required' && (
-              <p role="alert" className="text-red-500">
-                Name is required
-              </p>
-            )}
-            {errors.name?.type === 'pattern' && (
-              <p role="alert" className="text-red-500">
-                Only alphanumeric characters
-              </p>
-            )}
+          <div className="w-full">
+            <p role="alert" className="text-red-500 h-4">
+              {errors.name?.type === 'required'
+                ? 'Name is required'
+                : errors.name?.type === 'pattern'
+                  ? 'Only alphanumeric characters'
+                  : ''}
+            </p>
           </div>
-          <div className="flex justify-around w-full">
-            <div className="flex flex-col gap-4 justify-center w-1/2">
+          <div className="flex flex-wrap justify-center items-end w-full">
+            <div className="flex flex-col gap-4 justify-center w-full md:w-1/2 p-2">
               <div className="flex flex-col gap-2">
                 <label htmlFor="name">Project Name</label>
                 <input
                   type="text"
                   placeholder="Name"
                   maxLength={20}
-                  className="w-48 h-8 text-black bg-appLight rounded-xs p-2 outline-none placeholder:text-gray-700"
+                  className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
                   {...register('name', {
                     required: true,
                     pattern: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$/,
@@ -102,7 +99,7 @@ function EditProjectDialog({ isOpen, onClose, projectId }: AddTaskDialog) {
                 <select
                   id="color"
                   {...register('background')}
-                  className="w-48 h-8 text-black bg-appLight rounded-xs pl-2 outline-none placeholder:text-gray-700"
+                  className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
                 >
                   {colors.map((elem, index) => {
                     const selected = elem.color === `${project.gradient[0]},${project.gradient[1]}`
@@ -115,13 +112,16 @@ function EditProjectDialog({ isOpen, onClose, projectId }: AddTaskDialog) {
                 </select>
               </div>
             </div>
-            <div
-              className="w-1/2 transition-colors rounded-sm"
-              style={{ background: `linear-gradient(to bottom right, ${color}` }}
-            ></div>
+            <div className="flex justify-center items-center w-1/2 h-32 p-2">
+              <div
+                className="w-full h-full transition-colors rounded-sm"
+                style={{ background: `linear-gradient(to bottom right, ${color}` }}
+              ></div>
+            </div>
           </div>
           <input
             type="submit"
+            value="Update"
             className="cursor-pointer w-1/3 p-1 rounded-sm bg-appSecondary hover:bg-appSecondary/75 hover:scale-102 hover:text-white transition-all duration-200"
           />
         </form>

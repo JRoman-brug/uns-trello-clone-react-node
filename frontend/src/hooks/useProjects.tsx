@@ -16,6 +16,7 @@ const useProjects = () => {
     mutationFn: createProject,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['projects'] })
+      queryClient.refetchQueries({ queryKey: ['projects'] })
     },
   })
 
@@ -23,6 +24,7 @@ const useProjects = () => {
     mutationFn: updateProject,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['projects'] })
+      queryClient.refetchQueries({ queryKey: ['projects'] })
     },
   })
 
@@ -30,6 +32,7 @@ const useProjects = () => {
     mutationFn: deleteProject,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['projects'] })
+      queryClient.refetchQueries({ queryKey: ['projects'] })
     },
   })
 

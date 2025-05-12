@@ -8,7 +8,7 @@ interface props {
 function OptionsMenu({ close, openUpdateDialog, openDeleteDialog }: props) {
   return (
     <div
-      className="absolute z-1000 -top-6 -right-32 bg-appDarkAccent shadow-[0_0_0_1px_#39424a] text-appLightDark rounded-sm pb-8 text-md cursor-auto"
+      className="absolute z-1000 -top-6 -right-3 bg-appDarkAccent shadow-[0_0_0_1px_#39424a] text-appLightDark rounded-sm pb-8 text-md cursor-auto"
       onClick={e => e.stopPropagation()}
     >
       <div className="flex justify-center py-2 font-bold text-lg px-14">

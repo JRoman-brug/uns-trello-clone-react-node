@@ -1,95 +1,96 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/aZzykbwC)
-# Proyecto 1 - Desarrollo de Aplicación Web con React y API Propia
 
-### 📌 Introducción
+# Trello Simplificado
 
-En este proyecto, cada comisión desarrollará una aplicación web interactiva utilizando **React** en el frontend y una **API propia** en el backend. El objetivo es que los alumnos comprendan y apliquen el modelo **cliente-servidor**, reforzando conceptos clave del desarrollo web. La aplicación deberá cumplir con una estructura común definida en este enunciado, pero permitirá cierto grado de personalización para que cada comisión tenga un enfoque único.
+Este proyecto es una versión simplificada de **Trello**, desarrollada como parte de una clase de Ingeniería de Aplicaciones Web. Permite gestionar proyectos, listas de tareas y tareas individuales con operaciones CRUD completas, sin necesidad de autenticación o base de datos.
 
-La aplicación debe contar con un diseño atractivo y una interfaz intuitiva para mejorar la experiencia del usuario. Se evaluará tanto la estética como la claridad en la navegación. Además, el código desarrollado será analizado para garantizar buenas prácticas y un funcionamiento adecuado. Para darle mayor realismo, la aplicación deberá simular un producto profesional, asociado a una empresa o institución (real o ficticia), incluyendo un nombre y un logotipo representativo.
+## 🚀 Tecnologías utilizadas
 
----
+### Frontend
 
-### 📋 Requisitos
+- **React**: Biblioteca principal para la construcción de interfaces de usuario.
+- **TanStack Query (React Query)**: Manejo eficiente del estado asincrónico y cacheo de datos.
+- **React Router**: Navegación entre vistas del frontend.
+- **Radix UI**: Componentes personalizables para la interfaz de usuarios.
+- **Axios**: Biblioteca para realizar peticiones HTTP.
+- **React Hook Form**: Manejo de formularios y validaciones.
+- **Tailwind CSS**
+- **React Toastify**
+- **React Icons**
+- **Otros**: Herramientas complementarias para mejorar la experiencia de desarrollo.
 
-✅ **Frontend en React** → Debe ser una SPA con componentes reutilizables.
+### Backend
 
-✅ **Backend con API propia (Node.js/Express)** → El frontend debe consumir esta API.
+- **Express.js**: Framework web para Node.js, utilizado para exponer una API REST simple.
+- **UUID**: Generación de identificadores únicos para proyectos, listas y tareas.
 
-✅ **Consumo de API con Fetch/Axios** → Para la comunicación entre frontend y backend.
+## 📦 Funcionalidades principales
 
-✅ **Datos almacenados en memoria o archivos JSON** → No hay base de datos, los datos se pierden al reiniciar el servidor.
+- **Proyectos**:
+  - Crear, editar, eliminar.
+  - Atributos: id, name, gradient (color personalizable para cada proyecto), lists.
+- **Listas de tareas**:
+  - Crear, editar, eliminar.
+  - Atributos: id, name, tasks, projectId.
+- **Tareas**:
+  - Crear, editar, eliminar.
+  - Atributos: id, name, description, type, isCompleted, listId.
 
-✅ **Interactividad básica** → La aplicación debe permitir **crear, leer, actualizar y eliminar (CRUD)** los datos.
+## 📁 Estructura del proyecto
 
-✅ **Estilos bien trabajados** → Se recomienda el uso de un framework de estilos como **Tailwind CSS, Chakra UI o Bootstrap**.
+- /frontend --> Aplicación React (UI)
+  - /src --> Código fuente de la aplicación
+    - /components --> Componentes react reutilizables
+    - /hooks --> Custom hooks
+    - /services --> Servicios para interactuar con la API
+    - /types --> Tipos de datos utilizados en el frontend
+- /backend --> Servidor Express con almacenamiento en JSON
+  - server.ts --> Archivo principal del servidor express
+  - /routes --> Rutas para la API
+  - /controllers --> Controladores para manejar la lógica de negocio
+  - /services --> Servicios para interactuar con el sistema de archivos
+  - /data --> Archivos JSON para almacenar los datos
+  - /types --> Tipos de datos utilizados en el backend
 
----
+## 🛠️ Cómo ejecutar el proyecto
 
-### ❌ Restricciones
+### Requisitos
 
-❌ **No se permite autenticación** → No hay login ni gestión de usuarios.
+- Node.js y npm instalados
 
-❌ **No debe usarse una base de datos** → Los datos son temporales.
+### Pasos
 
-❌ **No se permite usar un carrito de compras** → Esa mecánica quedará para el segundo proyecto.
+1. **Clonar el repositorio:**
 
----
+```bash
+git clone https://github.com/IAW-2025/react-express-popp-brugnoni.git
+cd react-express-popp-brugnoni
+```
 
-### 💡 Ejemplos de aplicaciones posibles
+2. **Instalar dependencias y ejecutar**
 
-Cada comisión podrá elegir el enfoque de su aplicación, siempre respetando los requisitos y restricciones. Algunas opciones recomendadas:
+```bash
+npm install
+npm start
+```
 
-- **Gestor de tareas** → Aplicación para agregar, editar y eliminar tareas.
-- **Mini blog** → Permitir crear y visualizar publicaciones con comentarios.
-- **Agenda de eventos** → Manejo de eventos con fechas y descripciones.
-- **Catálogo de productos ficticio** → Mostrar productos con detalles y filtros de búsqueda.
+3. **Acceder en http://localhost:5173**
 
-Cada comisión puede proponer otras ideas siempre que cumplan con la estructura general del proyecto.
+## :link: Enlaces útiles
 
----
+- **Aplicación en Render**: https://trello-lgg5.onrender.com
+- **API en Render**: https://trello-api-zr11.onrender.com
 
-### 📝 Operatoria
+## 📚 Notas
 
-### **Entregables:**
+- Este proyecto no cuenta con autenticación de usuarios.
 
-- Código fuente del proyecto en el repositorio de GitHub creado al momento de aceptar este proyecto.
-- Link a la aplicación desplegada en [Render](https://render.com/) en el archivo `Readme.md` del repositorio.
+- No se utiliza una base de datos; los datos persisten en un archivo local data.json en el backend.
 
-### Comisiones:
+- El objetivo principal es demostrar habilidades con React, Express y gestión de estado en el frontend.
 
-- El proyecto se realizará en comisiones de a 2 alumnos
-- La cátedra le asignará un ayudante el cual será el encargado del seguimiento y la corrección del proyecto.
+## 📖 Autores
 
-### Punto de Control:
+Franco Popp - https://github.com/FrancoPopp
 
-- Será necesario al menos un punto de control con el ayudante asignado, el cual debe ser coordinado informalmente en el aula o via mensaje en la plataforma Moodle.
-- El objetivo del punto de control es explicar la idea a realizar del proyecto y el grado de avance en el momento de realizar el control.
-
-### 📅 Fecha límite de entrega:
-
-- La fecha de entrega del proyecto es el día Jueves 15 de Mayo a las 23:59 hs.
-- Se debe subir al branch main todos los cambios realizados para el desarrollo del proyecto.
-- Se recomienda trabajar en uno o mas branchs de main y mezclar los cambios de manera gradual o todos juntos al final. 
-- Este archivo debe incluir un link al deploy funcional de Render [aquí]().
-- Además, se puede incluir cualquier nota que sea requerida al final de este archivo.
-- El no cumplimiento de alguno de los puntos anteriores invalida la entrega por completo del proyecto.
-
-### Defensa:
-
-- Se asignará un horario a cada comisión para la defensa del proyecto el día 20 o 22 de Mayo, de 20 minutos.
-- En dicha defensa deberán explicar el funcionamiento de su proyecto y responder consultas de la cátedra respecto a la implementación del mismo
-
-### **Criterios de Evaluación:**
-
-- **Completitud:** Cumplimiento de todos los requerimientos listados.
-- **Funcionalidad:** Correcto funcionamiento de todas las características implementadas.
-- **Calidad del Código:** Organización, legibilidad y uso de buenas prácticas de programación.
-- **Diseño y UX:** Atractivo visual y facilidad de uso de la aplicación.
-
-## Nota Final
-
-La estructura de este repositorio dado como ejemplo fue tomado del siguiente repositorio:
-
-[Simple Monorepo Setup With React.js (Vite) And Express.js](https://github.com/dstamenkovic/react-express-starter) y [este](https://dusanstam.com/posts/react-express-monorepo) post.
-
-Puede utilizarse de esta manera o pueden eliminarlo por completo y aplicar su propia estructura de carpetas y organización del proyecto deseada.
+Román Brugnoni - https://github.com/JRoman-brug
