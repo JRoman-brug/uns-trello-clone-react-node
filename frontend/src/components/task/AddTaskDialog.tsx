@@ -44,7 +44,14 @@ function AddTaskDialog({ isOpen, listId, onClose }: AddTaskDialog) {
     onClose()
     reset()
   }
-
+  const getErrorMenssage = () => {
+    if (errors.name?.type === 'required') return 'Name is required'
+    if (errors.description?.type === 'required') return 'Description is required'
+    if (errors.name?.type === 'pattern' || errors.description?.type === 'pattern')
+      return 'Only alphanumeric characters'
+    if (errors.name?.type == 'maxLength') return 'Name must be no more 20 Characters'
+    if (errors.description?.type == 'maxLength') return 'Description must be no more 250 Characters'
+  }
   const taskType = ['Design', 'Development', 'Testing', 'Deployment']
   return (
     <div
@@ -61,13 +68,7 @@ function AddTaskDialog({ isOpen, listId, onClose }: AddTaskDialog) {
         >
           <div className="w-full">
             <p role="alert" className="text-red-500 h-4">
-              {errors.name?.type === 'required'
-                ? 'Name is required'
-                : errors.name?.type === 'pattern' || errors.description?.type === 'pattern'
-                  ? 'Only alphanumeric characters'
-                  : errors.description?.type === 'required'
-                    ? 'Description is required'
-                    : ''}
+              {getErrorMenssage()}
             </p>
           </div>
           <div className="flex flex-wrap justify-between gap-2 items-center w-full md:w-3/4">
@@ -76,11 +77,11 @@ function AddTaskDialog({ isOpen, listId, onClose }: AddTaskDialog) {
               <input
                 {...register('name', {
                   maxLength: 20,
-                  min: 3,
                   pattern: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$/,
                   required: true,
                 })}
                 id="name"
+                maxLength={20}
                 placeholder="Name"
                 className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
               />
@@ -111,6 +112,7 @@ function AddTaskDialog({ isOpen, listId, onClose }: AddTaskDialog) {
                 })}
                 id="description"
                 placeholder="Description"
+                maxLength={250}
                 className="w-full h-32 resize-none text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
               />
             </div>

@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import useTasks from '../../hooks/useTasks'
 import { TaskType } from '../../types/dataTypes'
+import { useEffect } from 'react'
 
 interface EditTaskDialog {
   task: TaskType
@@ -18,6 +19,7 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
   const {
     register,
     formState: { errors },
+    reset,
     handleSubmit,
   } = useForm<TaskForm>()
 
@@ -25,6 +27,11 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
     e.stopPropagation()
     onClose()
   }
+  useEffect(() => {
+    if (isOpen && task) {
+      reset(task)
+    }
+  }, [isOpen, task, reset])
 
   const onSubmit: SubmitHandler<TaskForm> = data => {
     const newTask: TaskType = {
@@ -38,9 +45,18 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
       position: 'bottom-right',
       autoClose: 2000,
     })
+    reset()
     onClose()
   }
 
+  const getErrorMenssage = () => {
+    if (errors.name?.type === 'required') return 'Name is required'
+    if (errors.description?.type === 'required') return 'Description is required'
+    if (errors.name?.type === 'pattern' || errors.description?.type === 'pattern')
+      return 'Only alphanumeric characters'
+    if (errors.name?.type == 'maxLength') return 'Name must be no more 20 Characters'
+    if (errors.description?.type == 'maxLength') return 'Description must be no more 250 Characters'
+  }
   const taskType = ['Design', 'Development', 'Testing', 'Deployment']
   return (
     <div
@@ -57,13 +73,7 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
         >
           <div className="w-full">
             <p role="alert" className="text-red-500 h-4">
-              {errors.name?.type === 'required'
-                ? 'Name is required'
-                : errors.name?.type === 'pattern' || errors.description?.type === 'pattern'
-                  ? 'Only alphanumeric characters'
-                  : errors.description?.type === 'required'
-                    ? 'Description is required'
-                    : ''}
+              {getErrorMenssage()}
             </p>
           </div>
           <div className="flex flex-wrap justify-between gap-2 items-center w-full md:w-3/4">
@@ -74,11 +84,11 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
               <input
                 {...register('name', {
                   maxLength: 20,
-                  min: 3,
                   pattern: /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$/,
                   required: true,
                 })}
                 id="name"
+                maxLength={20}
                 placeholder="Name"
                 className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
                 defaultValue={task.name}
@@ -110,6 +120,7 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
                 })}
                 id="description"
                 placeholder="Description"
+                maxLength={250}
                 className="w-full h-32 resize-none text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
               />
             </div>
