@@ -27,7 +27,6 @@ function AddListTaskDialog({ projectId, isOpen, onClose }: AddListTaskDialog) {
   }
 
   const onSubmit: SubmitHandler<ListTaskForm> = data => {
-    console.log(data)
     const newList: ListRequestType = {
       name: data.name,
       projectId: projectId,

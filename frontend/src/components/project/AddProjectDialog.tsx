@@ -92,7 +92,6 @@ function AddProjectDialog({ isOpen, onClose }: AddTaskDialog) {
                 <select
                   id="color"
                   {...register('background')}
-                  onSelect={e => console.log(e)}
                   className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
                 >
                   {colors.map((elem, index) => (

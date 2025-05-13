@@ -35,12 +35,6 @@ function ListTask({ list }: props) {
     }
   }, [isError])
 
-  useEffect(() => {
-    console.log(
-      `The tasks of list ${list.id} are: ${tasks?.map(task => `\n${task.id} ${task.name}`)}`,
-    )
-  }, [tasks])
-
   const [openOptions, setOpenOptions] = useState(false)
   const [openUpdateDialog, setOpenUpdateDialog] = useState(false)
   const [openAddTaskDialog, setOpenAddTaskDialog] = useState(false)

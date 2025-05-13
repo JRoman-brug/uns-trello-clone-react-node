@@ -10,7 +10,6 @@ interface TaskDialog {
 function TaskDialog({ task, open, onClose }: TaskDialog) {
   const onCancel = (e: React.MouseEvent) => {
     e.stopPropagation()
-    console.log('cancel')
     onClose()
   }
 

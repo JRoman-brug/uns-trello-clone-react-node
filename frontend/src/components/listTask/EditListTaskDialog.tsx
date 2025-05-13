@@ -36,7 +36,6 @@ function EditListTaskDialog({ list, open, onClose }: EditListTaskDialog) {
   }
 
   const onSubmit: SubmitHandler<ListTaskForm> = data => {
-    console.log(data)
     const newList: ListType = {
       ...list,
       name: data.name,
