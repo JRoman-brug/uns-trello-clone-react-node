@@ -12,9 +12,10 @@ import useTasks from '../../hooks/useTasks'
 
 interface props {
   task: TaskType
+  listName: string
 }
 
-function Task({ task }: props) {
+function Task({ task, listName }: props) {
   const { updateTaskStatus, deleteTask } = useTasks(task.listId)
 
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false)
@@ -40,6 +41,7 @@ function Task({ task }: props) {
       <div className="flex py-2 px-1 justify-start relative gap-2 items-start text-appLightDark text-md font-normal">
         <button
           className={`flex size-5 items-center justify-center rounded-full cursor-pointer transition-all box-border border-1 duration-200 ${task.isCompleted ? 'border-green-400 bg-green-400 hover:bg-green-400/75' : 'border-appLightDark bg-[#0000] hover:border-appLightDark/75'}`}
+          aria-label={`${task.isCompleted ? 'Unmark' : 'Mark'}  task ${task.name} from the '${listName}' list as complete`}
           onClick={e => {
             e.stopPropagation()
 
@@ -81,7 +83,7 @@ function Task({ task }: props) {
               setOpenEditTaskDialog(true)
             }}
             className="p-1 rounded-md text-gray-500 hover:bg-appLightDark/25 hover:text-appLight transition-all duration-200 cursor-pointer"
-            aria-label={`Edit task`}
+            aria-label={`Edit task: '${task.name}' from list:'${listName}'`}
           >
             <Pen size={18} />
           </button>
@@ -98,7 +100,7 @@ function Task({ task }: props) {
               e.stopPropagation()
               setOpenConfirmDialog(true)
             }}
-            aria-label={`Delete task`}
+            aria-label={`Delete task: '${task.name}' from list: '${listName}'`}
           >
             <Trash2 size={18} />
           </button>
