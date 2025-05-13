@@ -80,7 +80,7 @@ function EditProjectDialog({ isOpen, onClose, projectId }: AddTaskDialog) {
             </p>
           </div>
           <div className="flex flex-wrap justify-center items-end w-full">
-            <div className="flex flex-col gap-4 justify-center w-full md:w-1/2 p-2">
+            <div className="flex flex-col gap-4 justify-center w-full md:w-1/2 py-2 md:py-0 md:px-2">
               <div className="flex flex-col gap-2">
                 <label htmlFor="name">Project Name</label>
                 <input

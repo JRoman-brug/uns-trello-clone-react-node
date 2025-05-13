@@ -125,7 +125,6 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
               />
             </div>
           </div>
-
           <input
             type="submit"
             value="Update"

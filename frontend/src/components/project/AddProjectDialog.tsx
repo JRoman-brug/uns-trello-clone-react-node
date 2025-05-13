@@ -73,7 +73,7 @@ function AddProjectDialog({ isOpen, onClose }: AddTaskDialog) {
             </p>
           </div>
           <div className="flex flex-wrap justify-center items-end w-full">
-            <div className="flex flex-col gap-4 justify-center w-full md:w-1/2 p-2">
+            <div className="flex flex-col gap-4 justify-center w-full md:w-1/2 py-2 md:py-0 md:px-2">
               <div className="flex flex-col gap-2">
                 <label htmlFor="name">Project name</label>
                 <input
@@ -112,6 +112,7 @@ function AddProjectDialog({ isOpen, onClose }: AddTaskDialog) {
           </div>
           <input
             type="submit"
+            value="Create"
             className="cursor-pointer w-1/3 p-1 rounded-sm bg-appSecondary hover:bg-appSecondary/75 hover:scale-102 hover:text-white transition-all duration-200"
           />
         </form>

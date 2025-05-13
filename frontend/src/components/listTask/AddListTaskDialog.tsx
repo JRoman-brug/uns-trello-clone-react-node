@@ -76,19 +76,11 @@ function AddListTaskDialog({ projectId, isOpen, onClose }: AddListTaskDialog) {
               />
             </div>
           </div>
-          <div className="flex justify-between w-full">
-            <button
-              onClick={onCancel}
-              className="text-white rounded-sm px-4 py-2 transition-colors cursor-pointer bg-red-500 md:bg-[#0000] hover:bg-red-500"
-            >
-              Cancel
-            </button>
-            <input
-              className="text-white rounded-sm px-4 py-2 transition-colors cursor-pointer bg-green-500 md:bg-[#0000] hover:bg-green-500"
-              type="submit"
-              value="Create"
-            />
-          </div>
+          <input
+            type="submit"
+            value="Create"
+            className="cursor-pointer w-1/3 p-1 rounded-sm bg-appSecondary hover:bg-appSecondary/75 hover:scale-102 hover:text-white transition-all duration-200"
+          />
         </form>
       </div>
     </div>

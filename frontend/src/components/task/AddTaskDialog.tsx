@@ -119,7 +119,7 @@ function AddTaskDialog({ isOpen, listId, onClose }: AddTaskDialog) {
           </div>
           <input
             type="submit"
-            value="Update"
+            value="Create"
             className="cursor-pointer w-1/3 p-1 rounded-sm bg-appSecondary hover:bg-appSecondary/75 hover:scale-102 hover:text-white transition-all duration-200"
           />
         </form>
