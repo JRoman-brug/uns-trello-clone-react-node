@@ -24,7 +24,11 @@ function Navbar() {
       <div className="flex-1 overflow-y-auto p-4">
         <div className="space-y-1">
           <div className="flex gap-2 mb-2 text-white">
-            <button onClick={() => navigate('/')} className="cursor-pointer">
+            <button
+              onClick={() => navigate('/')}
+              className="cursor-pointer"
+              aria-label="Back to home"
+            >
               <FaHome size={24} />
             </button>
             <p className="font-bold">Projects</p>

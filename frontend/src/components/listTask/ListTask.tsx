@@ -103,7 +103,7 @@ function ListTask({ list }: props) {
                   <p>Error loading task</p>
                 </div>
               ) : (
-                tasks?.map(task => <Task key={task.id} task={task} />)
+                tasks?.map(task => <Task key={task.id} task={task} listName={list.name} />)
               )}
             </AnimatePresence>
           </div>

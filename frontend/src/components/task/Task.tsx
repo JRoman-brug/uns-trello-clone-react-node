@@ -41,7 +41,7 @@ function Task({ task, listName }: props) {
       <div className="flex py-2 px-1 justify-start relative gap-2 items-start text-appLightDark text-md font-normal">
         <button
           className={`flex size-5 items-center justify-center rounded-full cursor-pointer transition-all box-border border-1 duration-200 ${task.isCompleted ? 'border-green-400 bg-green-400 hover:bg-green-400/75' : 'border-appLightDark bg-[#0000] hover:border-appLightDark/75'}`}
-          aria-label={`${task.isCompleted ? 'Unmark' : 'Mark'}  task ${task.name} from the '${listName}' list as complete`}
+          aria-label={`${task.isCompleted ? 'Unmark' : 'Mark'} task: '${task.name}' from the list: '${listName}' list as complete`}
           onClick={e => {
             e.stopPropagation()
 
