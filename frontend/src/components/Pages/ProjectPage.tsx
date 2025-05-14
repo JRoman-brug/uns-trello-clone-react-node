@@ -3,6 +3,7 @@ import Sidebar from '../Sidebar'
 import { useParams } from 'react-router-dom'
 import useProjects from '../../hooks/useProjects'
 import { useMemo } from 'react'
+import CanonicalTag from '../CanonicalTag'
 
 function ProjectPage() {
   const { id } = useParams()
@@ -21,6 +22,7 @@ function ProjectPage() {
       </div>
       <Sidebar />
       <Board />
+      <CanonicalTag />
     </div>
   )
 }
