@@ -1,10 +1,11 @@
+import { useEffect } from 'react'
 import useProjects from '../../hooks/useProjects'
 import { ProjectType } from '../../types/dataTypes'
 import { SubmitHandler, useForm } from 'react-hook-form'
 interface AddTaskDialog {
   isOpen: boolean
   onClose: () => void
-  projectId: string
+  project: ProjectType
 }
 
 type ProjectForm = {
@@ -12,11 +13,8 @@ type ProjectForm = {
   background: string
 }
 
-function EditProjectDialog({ isOpen, onClose, projectId }: AddTaskDialog) {
-  const { projects, updateProject } = useProjects()
-  const project = projects?.find(project => project.id === projectId)
-
-  if (!project) return
+function EditProjectDialog({ isOpen, onClose, project }: AddTaskDialog) {
+  const { updateProject } = useProjects()
 
   const colors = [
     { key: 'Blue', color: '#00d2ff,#3a47d5' },
@@ -39,24 +37,30 @@ function EditProjectDialog({ isOpen, onClose, projectId }: AddTaskDialog) {
     },
   })
 
+  const onCancel = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    reset(project)
+    onClose()
+  }
   const onSubmit: SubmitHandler<ProjectForm> = data => {
     const newProject: ProjectType = {
       ...project,
       name: data.name,
       gradient: [data.background.split(',')[0], data.background.split(',')[1]],
     }
-    updateProject({ id: projectId, project: newProject })
+    updateProject({ id: project.id, project: newProject })
+    reset(newProject)
     onClose()
-    reset()
   }
+  useEffect(() => {
+    reset({
+      name: project.name,
+      background: `${project.gradient[0]},${project.gradient[1]}`,
+    })
+  }, [isOpen, project, reset])
 
   const color = watch('background')
 
-  const onCancel = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    reset()
-    onClose()
-  }
   return (
     <div
       className={`fixed inset-0 m-0 w-screen h-screen z-1000 flex justify-center items-center transition-colors ${isOpen ? 'visible bg-[#0008]' : 'invisible'} `}
@@ -102,9 +106,8 @@ function EditProjectDialog({ isOpen, onClose, projectId }: AddTaskDialog) {
                   className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
                 >
                   {colors.map((elem, index) => {
-                    const selected = elem.color === `${project.gradient[0]},${project.gradient[1]}`
                     return (
-                      <option key={index} value={elem.color} selected={selected}>
+                      <option key={index} value={elem.color}>
                         {elem.key}
                       </option>
                     )

@@ -27,11 +27,6 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
     e.stopPropagation()
     onClose()
   }
-  useEffect(() => {
-    if (isOpen && task) {
-      reset(task)
-    }
-  }, [isOpen, task, reset])
 
   const onSubmit: SubmitHandler<TaskForm> = data => {
     const newTask: TaskType = {
@@ -49,7 +44,13 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
     onClose()
   }
 
-  const getErrorMenssage = () => {
+  useEffect(() => {
+    if (isOpen && task) {
+      reset(task)
+    }
+  }, [isOpen, task, reset])
+
+  const getErrorMessage = () => {
     if (errors.name?.type === 'required') return 'Name is required'
     if (errors.description?.type === 'required') return 'Description is required'
     if (errors.name?.type === 'pattern' || errors.description?.type === 'pattern')
@@ -73,7 +74,7 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
         >
           <div className="w-full">
             <p role="alert" className="text-red-500 h-4">
-              {getErrorMenssage()}
+              {getErrorMessage()}
             </p>
           </div>
           <div className="flex flex-wrap justify-between gap-2 items-center w-full md:w-3/4">
@@ -91,7 +92,6 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
                 maxLength={20}
                 placeholder="Name"
                 className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
-                defaultValue={task.name}
               />
             </div>
             <div className="flex flex-col gap-2 w-full md:w-7/16">
@@ -101,7 +101,6 @@ function EditTaskDialog({ task, isOpen, onClose }: EditTaskDialog) {
                   required: true,
                 })}
                 className="text-black bg-appLight rounded-xs px-2 py-1 outline-none placeholder:text-gray-700"
-                defaultValue={task.type}
               >
                 {taskType.map((type, index) => (
                   <option key={index} className="text-black bg-appLight" value={type}>

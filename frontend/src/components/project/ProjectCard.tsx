@@ -57,7 +57,7 @@ function ProyectCard({ project }: props) {
       <EditProjectDialog
         isOpen={updateDialog}
         onClose={() => setUpdateDialog(false)}
-        projectId={project.id}
+        project={project}
       />
       <ConfirmDialog
         title="Are you sure you want to delete this project?"
