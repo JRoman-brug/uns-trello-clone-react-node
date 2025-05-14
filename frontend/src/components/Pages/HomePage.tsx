@@ -17,13 +17,13 @@ function HomePage() {
         <div className="w-11/12 grid justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-10 mt-10 mx-auto">
           {projects?.map(project => <ProjectCard key={project.id} project={project} />)}
 
-          <div
+          <button
             onClick={() => setOpenModal(true)}
             className="w-[250px] h-[100px] flex justify-center items-center cursor-pointer border-[3px] border-white border-dashed hover:scale-105 transition-all duration-200 ease-in-out"
             aria-label="Create new project"
           >
             <FaPlus size={30} className="text-white" />
-          </div>
+          </button>
           <AddProjectDialog isOpen={openModal} onClose={() => setOpenModal(false)} />
         </div>
       </div>

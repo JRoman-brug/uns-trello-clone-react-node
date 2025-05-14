@@ -41,12 +41,13 @@ function Board() {
       ) : (
         lists?.map(list => <ListTask key={list.id} list={list} />)
       )}
-      <div
+      <button
         onClick={() => setOpenModal(true)}
         className="w-[250px] h-[100px] shrink-0 flex justify-center items-center cursor-pointer border-[3px] border-white border-dashed hover:scale-105 transition-all duration-200 ease-in-out"
+        aria-label="Add a new list task"
       >
         <FaPlus size={30} className="text-white" />
-      </div>
+      </button>
       <AddListTaskDialog
         projectId={id || ''}
         isOpen={openModal}
