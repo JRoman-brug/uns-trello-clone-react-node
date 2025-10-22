@@ -52,6 +52,23 @@ Este proyecto es una versión simplificada de **Trello**, desarrollada como part
   - /data --> Archivos JSON para almacenar los datos
   - /types --> Tipos de datos utilizados en el backend
 
+---
+
+### 💡 Lecciones Aprendidas y Mejoras Futuras
+
+Las limitaciones actuales del proyecto fueron decisiones de diseño explícitas para cumplir con la consigna académica, que se centraba en el manejo del estado del frontend.
+
+- **Persistencia de Datos:** El backend actualmente persiste los datos en un archivo `data.json` local.
+  - **Mejora a futuro:** El siguiente paso obvio sería reemplazar esto con una base de datos real (ej. **PostgreSQL** o **MongoDB**) y un ORM como **Prisma**, para permitir datos persistentes y escalables.
+- **Autenticación:** El proyecto no cuenta con autenticación de usuarios.
+  - **Mejora a futuro:** Implementaría un sistema de autenticación (ej. **JWT** o **Next-Auth**) para que los tableros sean privados y pertenezcan a usuarios específicos.
+- **Experiencia de Usuario (UX):**
+  - **Mejora a futuro:** Añadiría la funcionalidad de **"Drag and Drop"** (arrastrar y soltar) para mover tareas entre listas, utilizando una librería como `react-beautiful-dnd`.
+
+* **Flujo de Trabajo Git:** Aunque la colaboración en equipo fue exitosa, una mejora clave sería implementar un flujo de trabajo de Git más estricto (como **GitFlow**). Esto nos permitiría gestionar el desarrollo de nuevas _features_ y los _releases_ de forma mucho más ordenada y profesional, similar a como se trabaja en la industria.
+
+---
+
 ## 🛠️ Cómo ejecutar el proyecto
 
 ### Requisitos
